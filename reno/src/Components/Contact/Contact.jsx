@@ -65,6 +65,8 @@ const isSmallScreen = useMediaQuery(theme.breakpoints.down('xs'));
     ]
   return (
     <div>
+
+    <h1>Hellllo</h1>
         <Box
     sx={{
       backgroundImage: `url(${BgImage})`,

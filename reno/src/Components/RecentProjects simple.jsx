@@ -10,14 +10,6 @@ import { useState } from "react";
 import {useSelector} from "react-redux"
 import CardDetail from "./CardDetail/CardDetail";
 import WovenImageList from "./CardDetail/CardDetail";
-const projects = [
-  "Kitchen Wall design",
-  "Washroom Wall design",
-  "Basement Design",
-  "Tile floor Design",
-  "Painting wall Design",
-];
-
 const RecentProjects = () => {
 let abc = useSelector((store)=> store.ProductsSection.products)
   // const [selectedProject, setSelectedProject] = useState(null);

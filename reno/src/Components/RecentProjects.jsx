@@ -1,29 +1,19 @@
 import React from "react";
 import { Box, Card, CardMedia, IconButton } from "@mui/material";
-import P1 from "../Images/About/Recent Projects/project-v1-1.jpg";
-import P2 from "../Images/About/Recent Projects/project-v1-2.jpg";
-import P3 from "../Images/About/Recent Projects/project-v1-3.jpg";
-import P4 from "../Images/About/Recent Projects/project-v1-4.jpg";
-import P5 from "../Images/About/Recent Projects/project-v1-5.jpg";
+
 import SouthIcon from "@mui/icons-material/South";
 import { useState } from "react";
 import {useSelector} from "react-redux"
 import CardDetail from "./CardDetail/CardDetail";
-import WovenImageList from "./CardDetail/CardDetail";
-const projects = [
-  "Kitchen Wall design",
-  "Washroom Wall design",
-  "Basement Design",
-  "Tile floor Design",
-  "Painting wall Design",
-];
+
 
 const RecentProjects = () => {
 let abc = useSelector((store)=> store.ProductsSection.products)
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const handleProjectClick = (index) => {
-    setSelectedProject(index);
+  const handleProjectClick = (projectId) => {
+    const projectIndex = abc.find(p => p.id === projectId);
+    setSelectedProject(projectIndex);
   };
   return (
     <div>
@@ -147,11 +137,11 @@ let abc = useSelector((store)=> store.ProductsSection.products)
         ))}
       </Box>
       {selectedProject !== null && (
-        <WovenImageList
-          project={projects[selectedProject]}
-          onClose={() => setSelectedProject(null)}
-        />
-      )}
+  <CardDetail
+    project={selectedProject}
+    onClose={() => setSelectedProject(null)}
+  />
+)}
     </div>
   );
 };

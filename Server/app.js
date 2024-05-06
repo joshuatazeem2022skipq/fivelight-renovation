@@ -19,10 +19,11 @@ myApp.post("/create-user", async (req, res) => {
     return res.status(400).json({ error: "already exists" });
   }
   let data = new User(req.body);
+
   console.log(data, "yhn dtaat");
   await data.save();
 
-  const token = jsonwebtoken.sign({ id: _id }, "cat says meows", {
+  const token = jsonwebtoken.sign({ id: data.id }, "cat says meows", {
     expiresIn: "2d",
   });
 
@@ -38,7 +39,7 @@ myApp.post("/create-user", async (req, res) => {
     from: "mariaimran787898@gmail.com",
     to: "iammariaimran4545@gmail.com",
     subject: "Email Verification Email",
-    text: `http://localhost:3000/reset-password/${_id}/${token}`,
+    text: `http://localhost:3000/reset-password/${data.id}/${token}`,
   };
 
   transporter.sendMail(mailOptions, function (error, info) {

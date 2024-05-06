@@ -28,7 +28,7 @@ let CardsData = {
         "Get the full lineup of our Basic Tees. Have a fresh shirt all week, and an extra for laundry day.",
       options: "8 colors",
       imageSrc: P1,
-      images: [P1, P2, P3],
+      images: [{ src: P1 }, { src: P2 }, { src: P3 }],
       imageAlt:
         "Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green.",
     },

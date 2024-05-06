@@ -17,204 +17,16 @@
   ```
 */
 import { Fragment, useState } from 'react'
-import { Dialog, Disclosure, Popover, RadioGroup, Tab, Transition } from '@headlessui/react'
+import { Disclosure, RadioGroup, Tab } from '@headlessui/react'
+
 import {
   HeartIcon,
-  MenuIcon,
   MinusSmIcon,
-  PlusSmIcon,
-  SearchIcon,
-  ShoppingBagIcon,
-  UserIcon,
-  XIcon,
+  PlusSmIcon
 } from '@heroicons/react/outline'
 import { StarIcon } from '@heroicons/react/solid'
 
-const navigation = {
-  categories: [
-    {
-      id: 'women',
-      name: 'Women',
-      featured: [
-        {
-          name: 'New Arrivals',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg',
-          imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
-        },
-        {
-          name: 'Basic Tees',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg',
-          imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
-        },
-        {
-          name: 'Accessories',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-03.jpg',
-          imageAlt: 'Model wearing minimalist watch with black wristband and white watch face.',
-        },
-      ],
-      sections: [
-        [
-          {
-            id: 'shoes',
-            name: 'Shoes & Accessories',
-            items: [
-              { name: 'Sneakers', href: '#' },
-              { name: 'Boots', href: '#' },
-              { name: 'Flats', href: '#' },
-              { name: 'Sandals', href: '#' },
-              { name: 'Heels', href: '#' },
-              { name: 'Socks', href: '#' },
-            ],
-          },
-          {
-            id: 'collection',
-            name: 'Shop Collection',
-            items: [
-              { name: 'Everything', href: '#' },
-              { name: 'Core', href: '#' },
-              { name: 'New Arrivals', href: '#' },
-              { name: 'Sale', href: '#' },
-              { name: 'Accessories', href: '#' },
-            ],
-          },
-        ],
-        [
-          {
-            id: 'clothing',
-            name: 'All Clothing',
-            items: [
-              { name: 'Basic Tees', href: '#' },
-              { name: 'Artwork Tees', href: '#' },
-              { name: 'Tops', href: '#' },
-              { name: 'Bottoms', href: '#' },
-              { name: 'Swimwear', href: '#' },
-              { name: 'Underwear', href: '#' },
-            ],
-          },
-          {
-            id: 'accessories',
-            name: 'All Accessories',
-            items: [
-              { name: 'Watches', href: '#' },
-              { name: 'Wallets', href: '#' },
-              { name: 'Bags', href: '#' },
-              { name: 'Sunglasses', href: '#' },
-              { name: 'Hats', href: '#' },
-              { name: 'Belts', href: '#' },
-            ],
-          },
-        ],
-        [
-          {
-            id: 'brands',
-            name: 'Brands',
-            items: [
-              { name: 'Full Nelson', href: '#' },
-              { name: 'My Way', href: '#' },
-              { name: 'Re-Arranged', href: '#' },
-              { name: 'Counterfeit', href: '#' },
-              { name: 'Significant Other', href: '#' },
-            ],
-          },
-        ],
-      ],
-    },
-    {
-      id: 'men',
-      name: 'Men',
-      featured: [
-        {
-          name: 'Accessories',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-03-category-01.jpg',
-          imageAlt:
-            'Wooden shelf with gray and olive drab green baseball caps, next to wooden clothes hanger with sweaters.',
-        },
-        {
-          name: 'New Arrivals',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg',
-          imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
-        },
-        {
-          name: 'Artwork Tees',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg',
-          imageAlt:
-            'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
-        },
-      ],
-      sections: [
-        [
-          {
-            id: 'shoes',
-            name: 'Shoes & Accessories',
-            items: [
-              { name: 'Sneakers', href: '#' },
-              { name: 'Boots', href: '#' },
-              { name: 'Sandals', href: '#' },
-              { name: 'Socks', href: '#' },
-            ],
-          },
-          {
-            id: 'collection',
-            name: 'Shop Collection',
-            items: [
-              { name: 'Everything', href: '#' },
-              { name: 'Core', href: '#' },
-              { name: 'New Arrivals', href: '#' },
-              { name: 'Sale', href: '#' },
-            ],
-          },
-        ],
-        [
-          {
-            id: 'clothing',
-            name: 'All Clothing',
-            items: [
-              { name: 'Basic Tees', href: '#' },
-              { name: 'Artwork Tees', href: '#' },
-              { name: 'Pants', href: '#' },
-              { name: 'Hoodies', href: '#' },
-              { name: 'Swimsuits', href: '#' },
-            ],
-          },
-          {
-            id: 'accessories',
-            name: 'All Accessories',
-            items: [
-              { name: 'Watches', href: '#' },
-              { name: 'Wallets', href: '#' },
-              { name: 'Bags', href: '#' },
-              { name: 'Sunglasses', href: '#' },
-              { name: 'Hats', href: '#' },
-              { name: 'Belts', href: '#' },
-            ],
-          },
-        ],
-        [
-          {
-            id: 'brands',
-            name: 'Brands',
-            items: [
-              { name: 'Re-Arranged', href: '#' },
-              { name: 'Counterfeit', href: '#' },
-              { name: 'Full Nelson', href: '#' },
-              { name: 'My Way', href: '#' },
-            ],
-          },
-        ],
-      ],
-    },
-  ],
-  pages: [
-    { name: 'Company', href: '#' },
-    { name: 'Stores', href: '#' },
-  ],
-}
+
 const product = {
   name: 'Zip Tote Basket',
   price: '$140',
@@ -264,28 +76,22 @@ const product = {
     // More sections...
   ],
 }
-const relatedProducts = [
-  {
-    id: 1,
-    name: 'Zip Tote Basket',
-    color: 'White and black',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg',
-    imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-    price: '$140',
-  },
-  // More products...
-]
 
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function CardDetail(selectedProject) {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [open, setOpen] = useState(false)
+  console.log(selectedProject, "dhbdu")
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
-
+  if (!selectedProject) {
+    return <div>No project selected</div>;
+  }
+const {description,price,imageSrc,images,name} = selectedProject.project;
+console.log( selectedProject, imageSrc, "mili h")
   return (
     <div className="bg-white">
       
@@ -298,16 +104,19 @@ export default function Example() {
               {/* Image selector */}
               <div className="hidden mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
                 <Tab.List className="grid grid-cols-4 gap-6">
-                  {product.images.map((image) => (
+                  {images.map((image, index) => (
                     <Tab
                       key={image.id}
                       className="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50"
+                      onClick={() => setSelectedImageIndex(index)}
                     >
                       {({ selected }) => (
                         <>
-                          <span className="sr-only">{image.name}</span>
+                          <span className="sr-only">{name}</span>
                           <span className="absolute inset-0 rounded-md overflow-hidden">
-                            <img src={image.src} alt="" className="w-full h-full object-center object-cover" />
+                            <img 
+                           src={image} 
+                            alt="" className="w-full h-full object-center object-cover" />
                           </span>
                           <span
                             className={classNames(
@@ -324,27 +133,29 @@ export default function Example() {
               </div>
 
               <Tab.Panels className="w-full aspect-w-1 aspect-h-1">
-                {product.images.map((image) => (
-                  <Tab.Panel key={image.id}>
+                {images.map((image) => (
+                  <Tab.Panel 
+                  // key={image.id}
+                  >
                     <img
-                      src={image.src}
-                      alt={image.alt}
+                      src={images[selectedImageIndex]}
+                      // alt={image.alt}
                       className="w-full h-full object-center object-cover sm:rounded-lg"
                     />
                     
                   </Tab.Panel>
                   
-                ))}
+           ))} 
               </Tab.Panels>
             </Tab.Group>
 
             {/* Product info */}
             <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
-              <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">{product.name}</h1>
+              <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">{name}</h1>
 
               <div className="mt-3">
                 <h2 className="sr-only">Product information</h2>
-                <p className="text-3xl text-gray-900">{product.price}</p>
+                <p className="text-3xl text-gray-900">{price}</p>
               </div>
 
               {/* Reviews */}
@@ -372,7 +183,7 @@ export default function Example() {
 
                 <div
                   className="text-base text-gray-700 space-y-6"
-                  dangerouslySetInnerHTML={{ __html: product.description }}
+                  dangerouslySetInnerHTML={{ __html:description }}
                 />
               </div>
 

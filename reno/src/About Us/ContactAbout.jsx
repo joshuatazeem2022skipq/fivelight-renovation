@@ -21,13 +21,12 @@ const RootContainer = styled("div")({
   backgroundImage: `linear-gradient(rgba(217, 169, 91, 0.8), rgba(217, 169, 91, 0.9)), url(${BG})`,
   backgroundSize: "cover",
   backgroundPosition: "center",
-  height: {md:"40vh", xs:"80vh"},
+  height: { md: "40vh", xs: "80vh" },
   padding: "24px",
   overflowX: "hidden",
   position: "relative",
-  marginTop: "0px"
+  marginTop: "0px",
 });
-
 
 const ButtonStyled = styled(Button)({
   backgroundColor: "#1a1a1a",
@@ -39,8 +38,6 @@ const ButtonStyled = styled(Button)({
     animation: `${changeColor} 0.5s forwards`,
   },
 });
-
-
 
 const ContactAbout = () => {
   const parallaxRef = useRef(null);
@@ -63,32 +60,82 @@ const ContactAbout = () => {
   return (
     <>
       <RootContainer ref={parallaxRef}>
-        <Grid container spacing={2} sx={{mb: {md: 13, sm: 16}}}>
-          <Grid item xs={10} sm={12} md={6} container justifyContent="center" alignItems="center">
+        <Grid container spacing={2} sx={{ mb: { md: 13, sm: 16 } }}>
+          <Grid
+            item
+            xs={10}
+            sm={12}
+            md={6}
+            container
+            justifyContent="center"
+            alignItems="center"
+          >
             <Grid container alignItems="center" justifyContent="center">
               <Grid item>
                 <CardMedia
                   component="img"
                   src={A1}
-                  sx={{mt: {md:12, xs:5 , sm:9},height:"130px" }}
+                  sx={{ mt: { md: 12, xs: 5, sm: 9 }, height: "130px" }}
                 />
               </Grid>
               <Grid item>
-                <Typography variant="h4"  sx={{mt: {md:12, xs:3 , sm:5,}, ml:{md:3, xs: 7}}}>Book your schedule</Typography>
-                <Typography variant="h3" color={"HighlightText"} sx={{ml:{md:3, xs:6.5}}}>647-606-9228, 647-702-2132</Typography>
+                <Typography
+                  variant="h4"
+                  sx={{ mt: { md: 12, xs: 3, sm: 5 }, ml: { md: 3, xs: 7 } }}
+                >
+                  Book your schedule
+                </Typography>
+                <Typography
+                  variant="h3"
+                  color={"HighlightText"}
+                  sx={{ ml: { md: 3, xs: 6.5 } }}
+                >
+                  <div>
+                    <p className="hoverEffect">
+                      <a href="tel:647-606-9228">Syed Humair 647-606-9228</a>
+                    </p>
+                    <p className="hoverEffect">
+                      <a href="tel:647-702-2132">Syed Daniyal 647-702-2132</a>
+                    </p>
+                  </div>
+                </Typography>
               </Grid>
             </Grid>
           </Grid>
 
-          <Grid item xs={12} sm={9} md={4} container justifyContent="center" alignItems="center">
+          <Grid
+            item
+            xs={12}
+            sm={9}
+            md={4}
+            container
+            justifyContent="center"
+            alignItems="center"
+          >
             <Grid container direction="row" alignItems="center">
               <Grid item>
-                <Typography variant="h4" color={"HighlightText"} sx={{mt: {md:12, xs:6 , sm:9,}, width:{md:"70%", xs: "90%", sm:"100%"}, ml:{xs:5, sm: 9}}}>
+                <Typography
+                  variant="h4"
+                  color={"HighlightText"}
+                  sx={{
+                    mt: { md: 12, xs: 6, sm: 9 },
+                    width: { md: "70%", xs: "90%", sm: "100%" },
+                    ml: { xs: 5, sm: 9 },
+                  }}
+                >
                   To book an appointment with an interior designer
                 </Typography>
               </Grid>
               <Grid item>
-                <ButtonStyled variant="contained" sx={{mt: {md:2, xs:5 , sm:3,}, ml:{md:8, xs:5, sm:9}}}>Discover More</ButtonStyled>
+                <ButtonStyled
+                  variant="contained"
+                  sx={{
+                    mt: { md: 2, xs: 5, sm: 3 },
+                    ml: { md: 8, xs: 5, sm: 9 },
+                  }}
+                >
+                  Discover More
+                </ButtonStyled>
               </Grid>
             </Grid>
           </Grid>

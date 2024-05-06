@@ -80,9 +80,11 @@ const IntDesign = () => {
                 style={{ marginRight: "10px" }}
               />
               <Typography variant="body1" color="white">
-                There are many variations of passages of available but the
-                majority have suffered alteration in some form, or randomised
-                words which don't look even slightly believable.
+                Build your dream on a foundation of quality. We source only the
+                finest materials, ensuring exceptional performance and lasting
+                beauty in every project. From enduring strength to luxurious
+                finishes, our commitment to quality elevates your space in every
+                way.
               </Typography>
             </Box>
           </>
@@ -348,10 +350,10 @@ const IntDesign = () => {
                       mt: { xs: 3, md: 0 },
                     }}
                   >
-                    There are many variations of passages of Lorem Ipsum
-                    available, but the majority have suffered alteration in some
-                    form, by injected humour, or randomised words which don't
-                    look even slightly believable.
+                    Break the mold. Reimagine your space. Explore a world of
+                    innovative wall designs that push boundaries and ignite your
+                    creativity. We don't just paint walls, we create
+                    experiences.
                   </Typography>
                 </Box>
               </Box>
@@ -404,10 +406,11 @@ const IntDesign = () => {
                       mt: { xs: 3, md: 0 },
                     }}
                   >
-                    There are many variations of passages of Lorem Ipsum
-                    available, but the majority have suffered alteration in some
-                    form, by injected humour, or randomised words which don't
-                    look even slightly believable.
+                    Elevate your vision with enduring quality. We use only the
+                    finest, most innovative wall materials to ensure your dream
+                    space is not just beautiful, but built to last. Experience
+                    the difference that premium materials make - from lasting
+                    durability to stunning aesthetics.
                   </Typography>
                 </Box>
               </Box>

@@ -33,7 +33,7 @@ const Services = [
   },
   {
     id: 2,
-    title: "Basement",
+    title: "Legal Basement",
     desc: "Transform your basement into a functional and stylish space",
     image: Basement,
   },
@@ -127,6 +127,12 @@ const leftSection = {
 };
 
 const ServicesMenu = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <Box
       sx={{
@@ -217,10 +223,13 @@ const ServicesMenu = () => {
                     {service.desc}
                   </Typography>
                   <Box sx={{ textAlign: "center", marginTop: "auto" }}>
-                  <Link to={`/services/${service.title.toLowerCase()}`}>
-                    <Avatar sx={{ backgroundColor: "#daaa5e" }}>
-                      <SouthIcon />
-                    </Avatar>
+                    <Link
+                      to={`/services/${service.title.toLowerCase()}`}
+                      onClick={() => scrollToTop()}
+                    >
+                      <Avatar sx={{ backgroundColor: "#daaa5e" }}>
+                        <SouthIcon />
+                      </Avatar>
                     </Link>
                   </Box>
                 </CardContent>
@@ -234,5 +243,3 @@ const ServicesMenu = () => {
 };
 
 export default ServicesMenu;
-
-

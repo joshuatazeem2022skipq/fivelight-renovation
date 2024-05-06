@@ -9,19 +9,23 @@ import Login from "./Components/Login/Login";
 import Servicespage from "./Pages/Servicespage";
 import Reset from "./Components/Reset/Reset";
 import Forgot from "./Forgot/Forgot";
-import Contact from "./Components/Contact/Contact";
-import BlogComponent from "./Components/Blogs/BlogComponent";
 import { NavigationProvider } from "./Components/MyContextProvider";
 import BlogDetails from "./Components/Blogs/BlogDetails";
+import ServiceMenuPage from "./Services/ServiceMenuPage";
+import AboutUsPage from "./Pages/AboutUsPage";
+import ContactPage from "./Pages/ContactPage";
+import BlogsPage from "./Pages/BlogsPage";
 function App() {
-  // const clientId =
-  //   "151687034607-kfd7qmcssr0lnjc132le6djbus9nfk49.apps.googleusercontent.com";
   return (
     <>
       <BrowserRouter>
         <NavigationProvider>
           <Routes>
             <Route path="/" element={<Main activePage={<Home />} />} />
+            <Route
+              path="/aboutus"
+              element={<Main activePage={<AboutUsPage />} />}
+            />
             <Route
               path="/portfolio"
               element={<Main activePage={<PortfolioPage />} />}
@@ -31,8 +35,12 @@ function App() {
               element={<Main activePage={<Servicespage />} />}
             />
             <Route
+              path="/services/:serviceName"
+              element={<Main activePage={<ServiceMenuPage />} />}
+            />
+            <Route
               path="/contact"
-              element={<Main activePage={<Contact></Contact>} />}
+              element={<Main activePage={<ContactPage />} />}
             />
             <Route
               path="/blogsdetail"
@@ -40,12 +48,12 @@ function App() {
             />
             <Route
               path="/blogs"
-              element={<Main activePage={<BlogComponent></BlogComponent>} />}
+              element={<Main activePage={<BlogsPage />} />}
             />
-            <Route path="/login" element={<Login></Login>} />
+            <Route path="/admin/login" element={<Login></Login>} />
             <Route path="/reset" element={<Reset></Reset>} />
             <Route path="/forgot" element={<Forgot></Forgot>} />
-            <Route path="/signup" element={<Signup></Signup>} />
+            <Route path="/admin/signup" element={<Signup></Signup>} />
             <Route path="*" element={<Error403Page />} />
           </Routes>
         </NavigationProvider>

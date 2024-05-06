@@ -15,6 +15,7 @@ import {
   Button,
   Avatar,
   Container,
+  Link,
 } from "@mui/material";
 import {
   Menu as MenuIcon,
@@ -28,6 +29,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import "../../Styles/Banner.css";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../Layout/Auth";
 
 const buttons = [
   { id: 1, title: "Home", path: "/" },
@@ -36,12 +38,19 @@ const buttons = [
   { id: 4, title: "Portfolio", path: "/portfolio" },
   { id: 5, title: "Blogs", path: "/blogs" },
   { id: 6, title: "Contact Us", path: "/contact" },
-  { id: 7, title: "Login", path: "/login" },
-  { id: 7, title: "Signup", path: "/signup" },
+];
+
+const adminTabs = [
+  { id: 7, title: "Admin Login", path: "/admin/login" },
+  { id: 8, title: "Admin Signup", path: "/admin/signup" },
 ];
 
 const AppBarWithTabs = () => {
   const navigate = useNavigate();
+  const { user } = useAuth() || {};
+  const isAdmin = () => {
+    return user && user.role === "admin";
+  };
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -78,6 +87,15 @@ const AppBarWithTabs = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  const handleHome = () => {
+    navigate("/");
+  };
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
@@ -104,8 +122,14 @@ const AppBarWithTabs = () => {
                     fontSize: "18px",
                   }}
                 >
-                  <span className="hoverEffect">647-606-9228, </span>
-                  <span className="hoverEffect">647-702-2132</span>
+                  <div>
+                    <p className="hoverEffect">
+                      <a href="tel:647-606-9228">Syed Humair 647-606-9228</a>
+                    </p>
+                    <p className="hoverEffect">
+                      <a href="tel:647-702-2132">Syed Daniyal 647-702-2132</a>
+                    </p>
+                  </div>
                 </Typography>
               </>
             )}
@@ -115,7 +139,16 @@ const AppBarWithTabs = () => {
                 component="img"
                 image={Logo}
                 alt="Logo"
-                sx={{ maxWidth: "220px", maxHeight: "110px", margin: "auto" }}
+                sx={{
+                  maxWidth: "220px",
+                  maxHeight: "110px",
+                  margin: "auto",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  handleHome();
+                  scrollToTop();
+                }}
               />
             </Box>
             {!isMobile && !isTablet && (
@@ -136,7 +169,15 @@ const AppBarWithTabs = () => {
                     },
                   }}
                 >
-                  <InstagramIcon sx={{ color: "black" }} />
+                  <Link
+                    href="https://www.instagram.com/fivelightsreno?igsh=MWtwbTFsMHA2ZzlhZQ=="
+                    variant="body1"
+                    underline="hover"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <InstagramIcon sx={{ color: "black" }} />{" "}
+                  </Link>
                 </Avatar>
                 <Divider
                   orientation="vertical"
@@ -156,7 +197,15 @@ const AppBarWithTabs = () => {
                     },
                   }}
                 >
-                  <FacebookIcon sx={{ color: "black" }} />
+                  <Link
+                    href="https://www.facebook.com/humair.kazmi/"
+                    variant="body1"
+                    underline="hover"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FacebookIcon sx={{ color: "black" }} />
+                  </Link>
                 </Avatar>
                 <Divider
                   orientation="vertical"
@@ -176,7 +225,15 @@ const AppBarWithTabs = () => {
                     },
                   }}
                 >
-                  <PinterestIcon sx={{ color: "black" }} />
+                  <Link
+                    href="https://www.pinterest.com/"
+                    variant="body1"
+                    underline="hover"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <PinterestIcon sx={{ color: "black" }} />
+                  </Link>
                 </Avatar>
               </div>
             )}
@@ -216,6 +273,10 @@ const AppBarWithTabs = () => {
                     height: { md: "30px", xs: "50px" },
                     "&:hover": { backgroundColor: "black" },
                   }}
+                  onClick={() => {
+                    navigate("/contact");
+                    scrollToTop();
+                  }}
                 >
                   Book Appointment
                 </Button>
@@ -254,8 +315,9 @@ const AppBarWithTabs = () => {
                 <div key={button.id}>
                   <Button
                     onClick={() => {
-                      toggleDrawer();
+                      navigate(button.path);
                       handleTabChange(button.path);
+                      scrollToTop();
                     }}
                     sx={{ my: 1, color: "#8f6e45" }}
                   >
@@ -264,6 +326,26 @@ const AppBarWithTabs = () => {
                   <Divider sx={{ backgroundColor: "#8f6e45" }} />
                 </div>
               ))}
+              {isAdmin() && (
+                <>
+                  <Divider sx={{ backgroundColor: "#8f6e45" }} />
+                  {adminTabs.map((tab) => (
+                    <div key={tab.id}>
+                      <Button
+                        onClick={() => {
+                          navigate(tab.path);
+                          handleTabChange(tab.path);
+                          scrollToTop();
+                        }}
+                        sx={{ my: 1, color: "#8f6e45" }}
+                      >
+                        {tab.title}
+                      </Button>
+                      <Divider sx={{ backgroundColor: "#8f6e45" }} />
+                    </div>
+                  ))}
+                </>
+              )}
             </Box>
           </Drawer>
         </>
@@ -293,10 +375,27 @@ const AppBarWithTabs = () => {
                     label={button.title}
                     value={button.path}
                     component="a"
-                    onClick={() => navigate(button.path)}
+                    onClick={() => {
+                      navigate(button.path);
+                      scrollToTop();
+                    }}
                     style={{ fontSize: "14px", marginLeft: "15px" }}
                   />
                 ))}
+                {isAdmin() &&
+                  adminTabs.map((tab) => (
+                    <Tab
+                      key={tab.id}
+                      label={tab.title}
+                      value={tab.path}
+                      component="a"
+                      onClick={() => {
+                        navigate(tab.path);
+                        scrollToTop();
+                      }}
+                      style={{ fontSize: "14px", marginLeft: "15px" }}
+                    />
+                  ))}
               </Tabs>
               <Box sx={{ display: "flex", alignItems: "center", mx: 3 }}>
                 {!isMobile && !isTablet && (
@@ -318,7 +417,12 @@ const AppBarWithTabs = () => {
                         fontSize: "18px",
                       }}
                     >
-                      Fivelightsreno@hotmail.com
+                      <a
+                        href="mailto:Fivelightsreno@hotmail.com"
+                        style={{ textDecoration: "none" }}
+                      >
+                        Fivelightsreno@hotmail.com
+                      </a>
                     </Typography>
                   </>
                 )}
@@ -332,6 +436,10 @@ const AppBarWithTabs = () => {
                     mx: { md: 3, xs: 1 },
                     height: "3em",
                     "&:hover": { backgroundColor: "black" },
+                  }}
+                  onClick={() => {
+                    navigate("/contact");
+                    scrollToTop();
                   }}
                 >
                   Book Appointment
@@ -365,6 +473,10 @@ const AppBarWithTabs = () => {
                     maxHeight: "110px",
                     margin: "auto",
                   }}
+                  onClick={() => {
+                    handleHome();
+                    scrollToTop();
+                  }}
                 />
               </div>
 
@@ -381,10 +493,26 @@ const AppBarWithTabs = () => {
                     key={button.id}
                     label={button.title}
                     value={button.path}
-                    onClick={() => navigate(button.path)}
+                    onClick={() => {
+                      navigate(button.path);
+                      scrollToTop();
+                    }}
                     style={{ fontSize: "14px", color: "#8f6e45" }}
                   />
                 ))}
+                {isAdmin() &&
+                  adminTabs.map((tab) => (
+                    <Tab
+                      key={tab.id}
+                      label={tab.title}
+                      value={tab.path}
+                      onClick={() => {
+                        navigate(tab.path);
+                        scrollToTop();
+                      }}
+                      style={{ fontSize: "14px", color: "#8f6e45" }}
+                    />
+                  ))}
               </Tabs>
             </Toolbar>
           </Container>

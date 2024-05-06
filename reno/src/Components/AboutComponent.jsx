@@ -58,10 +58,12 @@ const AboutComponent = () => {
                   gutterBottom
                   // sx={{ border: "1px solid black" }}
                 >
-                  There are many variations of passages of Lorem Ipsum
-                  available, but the majority have suffered alteration in some
-                  form, by injected humour, or randomised words which don't look
-                  even slightly believable.
+                  We specialize in transforming outdated spaces into beautiful,
+                  functional rooms that reflect your unique style. Whether
+                  you're looking for a complete kitchen overhaul, a luxurious
+                  bathroom retreat, or a vibrant living area, our team of
+                  experienced designers and skilled contractors will guide you
+                  every step of the way.
                 </Typography>
                 <Box sx={{ my: 4 }}>
                   <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -104,7 +106,7 @@ const AboutComponent = () => {
                       sx={{ mt: 1, color: "#daaa5e" }}
                     >
                       <strong>
-                        We have 4+ years of experience to give you better
+                        We have 16+ years of experience to give you better
                         quality results.
                       </strong>
                     </Typography>
@@ -143,7 +145,7 @@ const AboutComponent = () => {
                     sx={{ fontSize: { md: 48, xs: 34 }, color: "white" }}
                   />
                   <Typography variant="body1" color="white" align="center">
-                    Founded in 2024
+                    Founded in 2008
                   </Typography>
                 </Box>
                 <CardMedia

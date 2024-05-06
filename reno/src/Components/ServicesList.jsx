@@ -22,6 +22,7 @@ import Title from "../Images/About/Services/Title.jpeg";
 import Kitchen from "../Images/About/Services/Kitchen.jpeg";
 import { Fade } from "react-awesome-reveal";
 import "../Styles/Banner.css";
+import { Link } from "react-router-dom";
 
 const Services = [
   {
@@ -32,7 +33,7 @@ const Services = [
   },
   {
     id: 2,
-    title: "Basement",
+    title: "Legal Basement",
     desc: "Transform your basement into a functional and stylish space",
     image: Basement,
   },
@@ -126,6 +127,12 @@ const leftSection = {
 };
 
 const ServicesList = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <Box
       sx={{
@@ -166,7 +173,7 @@ const ServicesList = () => {
           {Services.map((service) => (
             <Fade
               direction="up"
-              duration={150 * service.id}
+              duration={50 * service.id}
               className={service}
               key={service.id}
               triggerOnce
@@ -215,11 +222,16 @@ const ServicesList = () => {
                   >
                     {service.desc}
                   </Typography>
-                  <Box sx={{ textAlign: "center", marginTop: "auto" }}>
-                    <Avatar sx={{ backgroundColor: "#daaa5e" }}>
-                      <SouthIcon />
-                    </Avatar>
-                  </Box>
+                  <Link
+                    to={`/services/${service.title.toLowerCase()}`}
+                    onClick={() => scrollToTop()}
+                  >
+                    <Box sx={{ textAlign: "center", marginTop: "auto" }}>
+                      <Avatar sx={{ backgroundColor: "#daaa5e" }}>
+                        <SouthIcon />
+                      </Avatar>
+                    </Box>
+                  </Link>
                 </CardContent>
               </Card>
             </Fade>

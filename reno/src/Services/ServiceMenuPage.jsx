@@ -111,6 +111,13 @@ const ServiceMenuPage = () => {
     navigate("/");
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   let serviceContent;
   if (selectedService) {
     serviceContent = (
@@ -129,42 +136,49 @@ const ServiceMenuPage = () => {
             px: { xs: 2, md: 20 },
           }}
         >
-         <Box sx={{ ml: 10 }}>
-        <Slide direction="down" duration={1000} triggerOnce>
-          <Stack direction={"row"}>
-            <Typography
-              variant="h4"
-              color="inherit"
-              sx={{
-                color: "white",
-                cursor: "pointer",
-                transition: "color 0.3s ease-in-out",
-                "&:hover": {
-                  color: "#d9a95b",
-                },
-              }}
-              onClick={Homenavi}
-            >
-              Home
-            </Typography>
-            <Typography
-              variant="h4"
-              color="inherit"
-              sx={{ color: "white", ml: 2, mr: 2 }}
-            >
-              -
-            </Typography>
-            <Typography variant="h4" color="inherit" sx={{ color: "white" }}>
-            {selectedService.title}
-            </Typography>
-          </Stack>
-        </Slide>
-        <Slide direction="up" duration={1000} triggerOnce>
-          <Typography variant="h1" sx={{ color: "#d9a95b" }}>
-          {selectedService.title}
-          </Typography>
-        </Slide>
-      </Box>
+          <Box sx={{ ml: 10 }}>
+            <Slide direction="down" duration={1000} triggerOnce>
+              <Stack direction={"row"}>
+                <Typography
+                  variant="h4"
+                  color="inherit"
+                  sx={{
+                    color: "white",
+                    cursor: "pointer",
+                    transition: "color 0.3s ease-in-out",
+                    "&:hover": {
+                      color: "#d9a95b",
+                    },
+                  }}
+                  onClick={() => {
+                    Homenavi();
+                    scrollToTop();
+                  }}
+                >
+                  Home
+                </Typography>
+                <Typography
+                  variant="h4"
+                  color="inherit"
+                  sx={{ color: "white", ml: 2, mr: 2 }}
+                >
+                  -
+                </Typography>
+                <Typography
+                  variant="h4"
+                  color="inherit"
+                  sx={{ color: "white" }}
+                >
+                  {selectedService.title}
+                </Typography>
+              </Stack>
+            </Slide>
+            <Slide direction="up" duration={1000} triggerOnce>
+              <Typography variant="h1" sx={{ color: "#d9a95b" }}>
+                {selectedService.title}
+              </Typography>
+            </Slide>
+          </Box>
         </Box>
         <Container sx={{ mt: 4, mb: 2 }}>
           <Grid container spacing={2}>
@@ -198,7 +212,10 @@ const ServiceMenuPage = () => {
                           },
                         }}
                         // href={category.path}
-                        onClick={() => handleNavigation(category.path)}
+                        onClick={() => {
+                          handleNavigation(category.path);
+                          scrollToTop();
+                        }}
                       >
                         {category.title}
                       </ToggleButton>
@@ -211,7 +228,7 @@ const ServiceMenuPage = () => {
               <Card>
                 <CardMedia
                   component="img"
-                  sx={{ height: { sm: "50vh", md: "54vh" } }}
+                  sx={{ height: { sm: "50vh", md: "62.5vh" } }}
                   image={selectedService.image}
                   alt="Placeholder Image"
                 />

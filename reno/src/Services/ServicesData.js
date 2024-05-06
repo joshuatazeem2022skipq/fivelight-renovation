@@ -51,8 +51,8 @@ const categories = [
   },
   {
     id: 2,
-    title: "Basement",
-    path: "/services/basement",
+    title: "Legal Basement",
+    path: "/services/legal basement",
     image: Basement,
     Heading: "Basement Makeover: Unlock Extra Space & Functionality",
     Paragraph:

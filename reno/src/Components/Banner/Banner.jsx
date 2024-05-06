@@ -57,12 +57,14 @@ const Banner = () => {
           >
             <Fade direction="up" triggerOnce delay={800}>
               <Typography variant="h5" sx={{ color: "#8f6e45" }}>
-                Renovation Company
+                Five Lights Reno
               </Typography>
-              <Typography variant="h2">Your Renovation Partner</Typography>
+              <Typography variant="h2">
+                Ignite the Brilliance Within: Award-Winning Home Transformations
+              </Typography>
               <Typography variant="body1">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Award-winning design + seamless execution = your dream home. Get
+                a free consultation today!
               </Typography>
             </Fade>
           </Box>

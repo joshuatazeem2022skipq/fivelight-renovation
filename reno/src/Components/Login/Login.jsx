@@ -18,10 +18,11 @@ import Signup from './Signup';
 
 // import Logo from "../../Images/Appbar/Logo.png";
 import { NotificationManager } from "react-notifications";
-
+import { GoogleLogin } from '@react-oauth/google';
 import axios from "axios"
 import {useForm} from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 export default function Login() {
   let { register, handleSubmit } = useForm();
   let move = useNavigate();
@@ -52,7 +53,7 @@ export default function Login() {
           <body class="h-full">
           ```
         */}
-        <div className="min-h-screen flex flex-col justify-center bg-black text-white py-12 sm:px-6 lg:px-8">
+        <div className=" min-h-screen flex flex-col justify-center bg-black text-white py-12 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
            
             <h2 className="mt-6 text-center text-3xl font-extrabold text-amber-600">Log in to your account</h2>
@@ -132,7 +133,19 @@ export default function Login() {
                   </button>
                 </div>
               </form>
-  
+  <div className="align-center text-center m-5 justify-center ml-15">
+              <GoogleLogin
+  onSuccess={credentialResponse => {
+
+    const decoded = jwtDecode(credentialResponse?.credential);
+    move("/");
+    console.log(decoded);
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+/>;
+</div>
               <div className="mt-6">
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">

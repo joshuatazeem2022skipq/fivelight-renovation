@@ -14,6 +14,8 @@ import BlogComponent from "./Components/Blogs/BlogComponent";
 import { NavigationProvider } from "./Components/MyContextProvider";
 import BlogDetails from "./Components/Blogs/BlogDetails";
 function App() {
+  // const clientId =
+  //   "151687034607-kfd7qmcssr0lnjc132le6djbus9nfk49.apps.googleusercontent.com";
   return (
     <>
       <BrowserRouter>
@@ -48,6 +50,7 @@ function App() {
           </Routes>
         </NavigationProvider>
       </BrowserRouter>
+      ;
     </>
   );
 }

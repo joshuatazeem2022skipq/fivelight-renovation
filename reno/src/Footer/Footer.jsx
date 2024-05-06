@@ -17,6 +17,7 @@ import Logo from "../Images/Appbar/Logo.png";
 import F1 from "../Images/Footer/footer-shape-1.png";
 import F2 from "../Images/Footer/footer-shape-2.png";
 import F3 from "../Images/Footer/footer-shape-3.png";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./Footer.css";
 import { styled } from "@mui/system";
 
@@ -30,6 +31,13 @@ const CustomTextField = styled(TextField)({
 });
 
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <Box position="relative" overflow="hidden" bgcolor="rgba(0,0,0,0.8)">
       <Box
@@ -57,9 +65,15 @@ const Footer = () => {
               />
               <Typography
                 variant="body2"
-                style={{ color: "white", marginTop: -40 }}
+                style={{
+                  color: "#a09c93",
+                  fontFamily: "sans-serif",
+                  fontWeight: "bold",
+                  marginTop: -40,
+                }}
               >
-                Description of the company goes here.
+                Expert Design, Flawless Execution: Five Lights Reno Makes it
+                Easy
               </Typography>
               <Divider
                 style={{
@@ -69,15 +83,50 @@ const Footer = () => {
                 }}
               />
               {[
-                { icon: <PhoneIcon />, text: "123-456-7890" },
-                { icon: <MailIcon />, text: "info@example.com" },
-                { icon: <LocationOnIcon />, text: "123 Street, City" },
+                {
+                  icon: <PhoneIcon />,
+                  text: (
+                    <div>
+                      <p>
+                        <a
+                          href="tel:647-606-9228"
+                          style={{ cursor: "pointer" }}
+                        >
+                          Syed Humair 647-606-9228
+                        </a>
+                      </p>
+                      <p>
+                        <a
+                          href="tel:647-702-2132"
+                          style={{ cursor: "pointer" }}
+                        >
+                          Syed Daniyal 647-702-2132
+                        </a>
+                      </p>
+                    </div>
+                  ),
+                },
+                {
+                  icon: <MailIcon />,
+                  text: (
+                    <a
+                      href="mailto:Fivelightsreno@hotmail.com"
+                      style={{
+                        textDecoration: "none",
+                        color: "#d9a95b",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Fivelightsreno@hotmail.com
+                    </a>
+                  ),
+                },
+                { icon: <LocationOnIcon />, text: "Pickering, ON, Canada" },
               ].map((item, index) => (
                 <Box
                   key={index}
                   style={{
                     display: "flex",
-                    // justifyContent: "center",
                     alignItems: "center",
                     marginBottom: 5,
                     marginTop: 30,
@@ -98,20 +147,29 @@ const Footer = () => {
             {[
               {
                 title: "Links",
-                links: ["Home", "About Us", "Portfolio", "Blogs", "Contact Us"],
+                links: [
+                  { name: "Home", path: "/" },
+                  { name: "About Us", path: "/aboutus" },
+                  { name: "Portfolio", path: "/portfolio" },
+                  { name: "Blogs", path: "/blogs" },
+                  { name: "Contact Us", path: "/contact" },
+                ],
               },
               {
                 title: "Services",
                 links: [
-                  "Renovations",
-                  "Basement",
-                  "Flooring",
-                  "Kitchen",
-                  "Drywall & Taping",
-                  "Tile",
-                  "Bath",
-                  "Painting",
-                  "Exterior Reno",
+                  { name: "Renovations", path: "/services/renovations" },
+                  { name: "Legal Basement", path: "/services/Legal basement" },
+                  { name: "Flooring", path: "/services/flooring" },
+                  { name: "Kitchen", path: "/services/kitchen" },
+                  {
+                    name: "Drywall & Taping",
+                    path: "/services/drywall & taping",
+                  },
+                  { name: "Tile", path: "/services/tile" },
+                  { name: "Bath", path: "/services/bath" },
+                  { name: "Painting", path: "/services/painting" },
+                  { name: "Exterior Reno", path: "/services/exterior reno" },
                 ],
               },
               {
@@ -147,13 +205,21 @@ const Footer = () => {
                       variant="inherit"
                       key={idx}
                       sx={{
-                        color: "white",
+                        color: "#a09c93",
+                        fontFamily: "sans-serif",
+                        fontWeight: "bold",
                         mb: 1,
                         mt: 2,
                         ml: { xs: 5, md: column.title === "Links" ? 8 : 0 },
+                        transition: "color 0.3s ease",
+                        "&:hover": {
+                          color: "#d9a95b",
+                        },
                       }}
                     >
-                      {link}
+                      <Link to={link.path} onClick={scrollToTop}>
+                        {link.name}
+                      </Link>
                     </Typography>
                   ))
                 ) : (
@@ -161,7 +227,9 @@ const Footer = () => {
                     <Typography
                       variant="body2"
                       sx={{
-                        color: "white",
+                        color: "#a09c93",
+                        fontFamily: "sans-serif",
+                        fontWeight: "bold",
                         mb: 1,
                         mt: 2,
                         ml: { xs: 5, md: 0 },
@@ -211,41 +279,53 @@ const Footer = () => {
                       </Button>
                     </Box>
                     <Box display="flex" sx={{ ml: { xs: 5, md: 0 }, mt: 3 }}>
-                      <FacebookIcon
-                        sx={{
-                          cursor: "pointer",
-                          "&:hover": {
-                            color: "#d9a95b",
-                            transition: "color 0.3s ease",
-                            boxShadow:
-                              "0px 0px 7px #d9a95b inset, 0px 0px 7px white ",
-                          },
-                        }}
-                      />
-                      <InstagramIcon
-                        sx={{
-                          cursor: "pointer",
-                          ml: 3,
-                          "&:hover": {
-                            color: "#d9a95b",
-                            transition: "color 0.3s ease",
-                            boxShadow:
-                              "0px 0px 7px #d9a95b inset, 0px 0px 7px white ",
-                          },
-                        }}
-                      />
-                      <PinterestIcon
-                        sx={{
-                          cursor: "pointer",
-                          ml: 3,
-                          "&:hover": {
-                            color: "#d9a95b",
-                            transition: "color 0.3s ease",
-                            boxShadow:
-                              "0px 0px 7px #d9a95b inset, 0px 0px 7px white ",
-                          },
-                        }}
-                      />
+                      <a
+                        href="https://www.facebook.com/humair.kazmi/"
+                        target="_blank"
+                      >
+                        <FacebookIcon
+                          sx={{
+                            cursor: "pointer",
+                            "&:hover": {
+                              color: "#d9a95b",
+                              transition: "color 0.3s ease",
+                              boxShadow:
+                                "0px 0px 7px #d9a95b inset, 0px 0px 7px white ",
+                            },
+                          }}
+                        />
+                      </a>
+                      <a
+                        href="https://www.instagram.com/fivelightsreno?igsh=MWtwbTFsMHA2ZzlhZQ=="
+                        target="_blank"
+                      >
+                        <InstagramIcon
+                          sx={{
+                            cursor: "pointer",
+                            ml: 3,
+                            "&:hover": {
+                              color: "#d9a95b",
+                              transition: "color 0.3s ease",
+                              boxShadow:
+                                "0px 0px 7px #d9a95b inset, 0px 0px 7px white ",
+                            },
+                          }}
+                        />
+                      </a>
+                      <a href="https://www.pinterest.com" target="_blank">
+                        <PinterestIcon
+                          sx={{
+                            cursor: "pointer",
+                            ml: 3,
+                            "&:hover": {
+                              color: "#d9a95b",
+                              transition: "color 0.3s ease",
+                              boxShadow:
+                                "0px 0px 7px #d9a95b inset, 0px 0px 7px white ",
+                            },
+                          }}
+                        />
+                      </a>
                     </Box>
                   </>
                 )}

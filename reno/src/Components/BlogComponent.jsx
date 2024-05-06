@@ -144,6 +144,7 @@ const BlogComponent = () => {
                 <Card
                   sx={{
                     width: "100%",
+                    height: "480px",
                     borderRadius: "12px",
                     marginBottom: "10px",
                     border: "1px solid #d9a95b",

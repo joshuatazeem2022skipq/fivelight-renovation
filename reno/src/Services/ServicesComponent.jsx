@@ -24,7 +24,7 @@ const ServicesComponent = () => {
         textAlign: "left",
       }}
     >
-     <Box sx={{ ml: 10 }}>
+      <Box sx={{ ml: 10 }}>
         <Slide direction="down" duration={1000} triggerOnce>
           <Stack direction={"row"}>
             <Typography
@@ -38,7 +38,7 @@ const ServicesComponent = () => {
                   color: "#d9a95b",
                 },
               }}
-              onClick={Homenavi}
+              onClick={{ Homenavi }}
             >
               Home
             </Typography>
@@ -50,13 +50,13 @@ const ServicesComponent = () => {
               -
             </Typography>
             <Typography variant="h4" color="inherit" sx={{ color: "white" }}>
-            Services
+              Services
             </Typography>
           </Stack>
         </Slide>
         <Slide direction="up" duration={1000} triggerOnce>
           <Typography variant="h1" sx={{ color: "#d9a95b" }}>
-          Our Services
+            Our Services
           </Typography>
         </Slide>
       </Box>

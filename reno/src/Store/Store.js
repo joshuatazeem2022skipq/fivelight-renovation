@@ -25,10 +25,10 @@ let CardsData = {
       dis: "5%",
       cut: "$45",
       description:
-        "Get the full lineup of our Basic Tees. Have a fresh shirt all week, and an extra for laundry day.",
+        "Elevate the heart of your home with our bespoke kitchen wall design service. We understand that the kitchen is more than just a functional space—it's where memories are made and culinary creativity flourishes. Our team of experienced designers combines practicality with aesthetics to craft personalized wall designs that perfectly complement your lifestyle and culinary aspirations. Whether you're seeking a sleek, minimalist backdrop for modern cooking or a cozy, rustic atmosphere for family gatherings, we offer a diverse range of materials, colors, and finishes to suit every taste. Transform your kitchen into a culinary haven with our tailored wall design solutions and create a space that inspires culinary creativity.Discover the art of culinary design with our expert kitchen wall design service. We believe that the kitchen should reflect your personality and culinary passions, serving as a space where functionality meets style. Our dedicated team collaborates closely with you to understand your vision and lifestyle requirements, curating innovative wall designs that enhance the ambiance and functionality of your kitchen. Whether you're drawn to contemporary trends or timeless classics, we offer a wide selection of materials and finishes, from sleek tiles to textured wallpapers, ensuring a bespoke solution that resonates with your unique aesthetic. Elevate your cooking experience and add a touch of sophistication to your kitchen with our customized wall design service, where every detail is crafted to perfection",
       options: "8 colors",
       imageSrc: P1,
-      images: [{ src: P1 }, { src: P2 }, { src: P3 }],
+      images: [P1, P2, P3],
       imageAlt:
         "Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green.",
     },
@@ -40,7 +40,7 @@ let CardsData = {
       dis: "5%",
       cut: "$45",
       description:
-        "Look like a visionary CEO and wear the same black t-shirt every day.",
+        "Transform your washroom into a serene oasis with our tailored wall design service. We understand that the washroom is a sanctuary for relaxation and rejuvenation, and our expert designers specialize in creating spaces that seamlessly blend functionality with tranquility. From luxurious marble accents to soothing pastel tones, our diverse range of materials and finishes allows you to personalize your washroom according to your unique style and preferences. Whether you envision a contemporary spa-like retreat or a timeless, elegant ambiance, our team works closely with you to bring your vision to life. Elevate your daily routine and indulge in the ultimate bathing experience with our bespoke washroom wall design solutions.Experience the epitome of luxury with our bespoke washroom wall design service. We believe that the washroom should be a haven of comfort and sophistication, reflecting your individuality and sense of style. Our talented designers specialize in curating personalized wall designs that combine opulence with functionality, ensuring a space that is both visually stunning and highly practical. From intricate mosaic patterns to sleek, modern finishes, we offer a wide array of options to suit every taste and aesthetic preference. Elevate your washroom to new heights of elegance and sophistication with our customized wall design service, where every detail is meticulously crafted to create a space that exudes luxury and refinement.",
       options: "Black",
       imageSrc: P2,
       images: [P1, P2, P3],
@@ -65,10 +65,10 @@ let CardsData = {
       name: "Tile floor Design",
       href: "#",
       price: "$32",
-      dis: "5%",
-      cut: "$45",
+      discount: "5%",
+      originalPrice: "$45",
       description:
-        "Look like a visionary CEO and wear the same black t-shirt every day.",
+        "Our tile floor design service brings a touch of elegance and functionality to your space, transforming ordinary floors into stunning focal points. With a keen eye for detail and a passion for creativity, we specialize in crafting personalized tile designs tailored to your unique style and preferences. Whether you prefer sleek modern aesthetics or timeless classical motifs, our expert team works closely with you to bring your vision to life, ensuring every tile is meticulously placed for a flawless finish. Elevate your interior with our tile floor design service and discover the transformative power of beautiful flooring.Elevate the ambiance of your home or commercial space with our bespoke tile floor design service. From contemporary chic to rustic charm, our skilled designers harness the versatility of tiles to create captivating flooring solutions that reflect your individual taste and lifestyle. We take pride in our attention to detail, meticulously curating patterns, textures, and color palettes to enhance the aesthetic appeal of any room. Whether you're revamping a kitchen, bathroom, or entire living area, our innovative approach and commitment to quality craftsmanship ensure a stunning result that exceeds expectations. Experience the beauty of bespoke tile floor design and unlock the potential of your space.        ",
       options: "Black",
       imageSrc: P4,
       images: [P1, P2, P3],
@@ -82,7 +82,7 @@ let CardsData = {
       dis: "5%",
       cut: "$45",
       description:
-        "Look like a visionary CEO and wear the same black t-shirt every day.",
+        "Look like a visionary CEO and wear thsbscjbvb sn  s c cs  jsj d ndiwsisnw de  ce c  c s a djnajnsj djhbd c chhhhhhhjc asc aj ds da saaaaaaaaa swded c scxnsbc h ed xhebdscn cnjcbjbj cbb xcbx hhbvb c    ndjndbwhsdbxhwbdhxb w xs  s cns dc dshcjdc           nbnb jnjbe same black t-shirt every day.",
       options: "Black",
       imageSrc: P5,
       images: [P1, P2, P3],

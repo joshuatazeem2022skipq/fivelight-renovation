@@ -50,10 +50,10 @@ function App() {
               path="/blogs"
               element={<Main activePage={<BlogsPage />} />}
             />
-            <Route path="/login" element={<Login></Login>} />
+            <Route path="/admin/login" element={<Login></Login>} />
             <Route path="/reset" element={<Reset></Reset>} />
             <Route path="/forgot" element={<Forgot></Forgot>} />
-            <Route path="/signup" element={<Signup></Signup>} />
+            <Route path="/admin/signup" element={<Signup></Signup>} />
             <Route path="*" element={<Error403Page />} />
           </Routes>
         </NavigationProvider>

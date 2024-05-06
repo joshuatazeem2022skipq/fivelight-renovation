@@ -72,7 +72,7 @@ console.log(data)
               src={Logo}
               alt="Workflow"
             /> */}
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-amber-600">Sign in to your account</h2>
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-amber-600">Sign up to your account</h2>
             <p className="mt-2 text-center text-sm text-amber-600">
               Or{' '}
               <a href="/login   " className="font-sm  text-indigo-300">
@@ -158,7 +158,7 @@ console.log(data)
                     type="submit"
                     className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-amber-500  hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
-                    Sign in
+                    Sign up
                   </button>
                 </div>
               </form>

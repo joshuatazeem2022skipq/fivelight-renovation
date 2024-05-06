@@ -13,13 +13,20 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.17",
     "@mui/system": "^5.15.12",
     "@react-google-maps/api": "^2.19.3",
+<<<<<<< HEAD
     "@react-oauth/google": "^0.12.1",
+=======
+>>>>>>> 4737b7e997113b06b7cd412dd3fa7e1b26af231c
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.8",
     "framer-motion": "^11.0.24",
+<<<<<<< HEAD
     "jwt-decode": "^4.0.0",
+=======
+    "googleapis": "^136.0.0",
+>>>>>>> 4737b7e997113b06b7cd412dd3fa7e1b26af231c
     "polished": "^4.3.1",
     "react": "^18.2.0",
     "react-awesome-reveal": "^4.2.8",

@@ -1,5 +1,6 @@
 let myExpress = require("express");
 let User = require("./Schema/users");
+let Quote = require("./Schema/quote");
 const cors = require("cors");
 // let multer = require("multer");
 let jsonwebtoken = require("jsonwebtoken");
@@ -58,13 +59,29 @@ myApp.post("/create-user", async (req, res) => {
   // users.push(req.body);
 });
 
-//   jsonwebtoken.verify(req.body.token, "cat says meows", function (err, myData) {
-//     let user = users.find((user) => user.name == myData.name);
-//     res.json(user);
-//     // console.log(myData);
-//   });
-// console.log(req.body.token);
-// });
+myApp.post("/quote", async (req, res) => {
+  try {
+    // Create a new instance of the Quote model with the request body
+    let data = new Quote(req.body);
+    console.log(data, "Data received from frontend");
+
+    // Save the data to the database
+    await data.save();
+
+    // Respond with a success message
+    res.json({
+      success: true,
+      message: "Quote saved successfully",
+    });
+  } catch (error) {
+    console.error("Error occurred while saving quote:", error);
+    // Respond with an error message if something went wrong
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while saving quote",
+    });
+  }
+});
 
 myApp.post("/login", async (req, res) => {
   let userMilgya = await User.findOne({
@@ -84,16 +101,6 @@ myApp.put("/update-user", async (req, res) => {
   res.json({
     success: true,
   });
-
-  //   return user.id == req.body.id;
-  // });
-  // if (userIndex != -1) {
-  //   users[userIndex] = req.body;
-  // }
-  // res.json({
-  //   success: true,
-  // });
-  // console.log("a");
 });
 
 myApp.post("/forgot-password", (req, res) => {

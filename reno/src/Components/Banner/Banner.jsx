@@ -12,6 +12,8 @@ import { styled } from "@mui/system";
 import { Fade } from "react-awesome-reveal";
 import BG from "../../Images/Banner/pexels-01.jpg";
 import BG1 from "../../Images/Banner/pexels-02.jpg";
+import {useForm} from "react-hook-form";
+import axios from "axios"
 
 const CustomTextField = styled(TextField)({
   "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
@@ -23,6 +25,22 @@ const CustomTextField = styled(TextField)({
 });
 
 const Banner = () => {
+  let { register, handleSubmit } = useForm();
+ 
+
+  const saveQuote = (data) => {
+    console.log(data, "this is the data");
+
+    axios
+      .post("http://localhost:6073/quote", data)
+      .then((res) => {
+        console.log(res, "response received");
+      })
+      .catch((error) => {
+        console.error("Error occurred while submitting the form:", error);
+      });
+  };
+
   return (
     <Box
       sx={{
@@ -84,7 +102,7 @@ const Banner = () => {
             className="contact-form-card"
             sx={{
               maxWidth: 400,
-              mt: { md: 16 },
+              mt: { md: 5 },
               filter: "brightness(150%) grayscale(0%)",
               backgroundColor: "black",
               borderRadius: "12px",
@@ -99,7 +117,8 @@ const Banner = () => {
               >
                 Get Free Quote
               </Typography>
-              <form>
+              <form onSubmit={handleSubmit(saveQuote)}>
+                
                 <CustomTextField
                   label="Name"
                   fullWidth
@@ -109,6 +128,7 @@ const Banner = () => {
                   InputLabelProps={{
                     style: { color: "#8f6e45" },
                   }}
+                  {...register("name")}
                   InputProps={{
                     style: {
                       color: "#8f6e45",
@@ -124,6 +144,7 @@ const Banner = () => {
                   InputLabelProps={{
                     style: { color: "#8f6e45" },
                   }}
+                  {...register("email")}
                   InputProps={{
                     style: {
                       color: "#8f6e45",
@@ -139,6 +160,23 @@ const Banner = () => {
                   InputLabelProps={{
                     style: { color: "#8f6e45" },
                   }}
+                  {...register("phone")}
+                  InputProps={{
+                    style: {
+                      color: "#8f6e45",
+                      borderColor: "#8f6e45",
+                    },
+                  }}
+                />
+                <CustomTextField
+                  label="Subject"
+                  fullWidth
+                  margin="normal"
+                  focused
+                  InputLabelProps={{
+                    style: { color: "#8f6e45" },
+                  }}
+                  {...register("subject")}
                   InputProps={{
                     style: {
                       color: "#8f6e45",
@@ -156,6 +194,7 @@ const Banner = () => {
                   InputLabelProps={{
                     style: { color: "#8f6e45" },
                   }}
+                  {...register("description")}
                   InputProps={{
                     style: {
                       color: "#8f6e45",
@@ -164,6 +203,7 @@ const Banner = () => {
                   }}
                 />
                 <Button
+                type="submit"
                   variant="contained"
                   style={{ backgroundColor: "#8f6e45", color: "black" }}
                   fullWidth

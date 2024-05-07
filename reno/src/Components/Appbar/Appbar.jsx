@@ -10,6 +10,7 @@ import {
   Drawer,
   Tab,
   Tabs,
+  Popover,
   Box,
   Divider,
   Button,
@@ -51,7 +52,7 @@ const AppBarWithTabs = () => {
   const isAdmin = () => {
     return user && user.role === "admin";
   };
-
+ 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
@@ -59,7 +60,13 @@ const AppBarWithTabs = () => {
   const [activeTab, setActiveTab] = useState(
     localStorage.getItem("activeTab") || "/"
   );
-
+  useEffect(() => {
+    // Remove activetab from local storage when the component unmounts
+    return () => {
+      localStorage.removeItem("activeTab");
+      
+    };
+  }, []);
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
@@ -262,6 +269,7 @@ const AppBarWithTabs = () => {
                   alignItems: "center",
                 }}
               >
+                <Link to = "/contact">
                 <Button
                   color="inherit"
                   variant="outlined"
@@ -280,6 +288,7 @@ const AppBarWithTabs = () => {
                 >
                   Book Appointment
                 </Button>
+                </Link>
               </Box>
             </Toolbar>
           </AppBar>

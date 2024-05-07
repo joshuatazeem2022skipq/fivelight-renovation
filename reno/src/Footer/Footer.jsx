@@ -21,6 +21,7 @@ import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./Footer.css";
 import { styled } from "@mui/system";
 
+
 const CustomTextField = styled(TextField)({
   "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
     borderColor: "#8f6e45",
@@ -31,6 +32,7 @@ const CustomTextField = styled(TextField)({
 });
 
 const Footer = () => {
+  
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,

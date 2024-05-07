@@ -34,7 +34,22 @@ import { useAuth } from "../../Layout/Auth";
 const buttons = [
   { id: 1, title: "Home", path: "/" },
   { id: 2, title: "About Us", path: "/aboutus" },
-  { id: 3, title: "Services", path: "/services" },
+  {
+    id: 3,
+    title: "Services",
+    path: "/services",
+    dropdownItems: [
+      { id: 9, name: "Renovations", path: "/services/renovations" },
+      { id: 10, name: "Legal Basement", path: "/services/legal-basement" },
+      { id: 11, name: "Flooring", path: "/services/flooring" },
+      { id: 12, name: "Kitchen", path: "/services/kitchen" },
+      { id: 13, name: "Drywall & Taping", path: "/services/drywall-taping" },
+      { id: 14, name: "Tile", path: "/services/tile" },
+      { id: 15, name: "Bath", path: "/services/bath" },
+      { id: 16, name: "Painting", path: "/services/painting" },
+      { id: 17, name: "Exterior Reno", path: "/services/exterior-reno" },
+    ],
+  },
   { id: 4, title: "Portfolio", path: "/portfolio" },
   { id: 5, title: "Blogs", path: "/blogs" },
   { id: 6, title: "Contact Us", path: "/contact" },

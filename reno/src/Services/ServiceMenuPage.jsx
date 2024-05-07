@@ -9,17 +9,22 @@ import {
   CardContent,
   CardMedia,
   Container,
+  Dialog,
+  DialogContent,
+  DialogTitle,
   Divider,
   Grid,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
+  Popover,
   Stack,
+  TextField,
   ToggleButton,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import BgImage from "../Images/Banner/pexels-03.jpg";
 import { Slide } from "react-awesome-reveal";
 import { styled } from "@mui/system";
@@ -33,6 +38,8 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useNavigate, useParams } from "react-router-dom";
 import categories from "./ServicesData";
+import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const CategoryCard = styled(Card)({
   backgroundColor: "#F6F2EB",
@@ -89,6 +96,15 @@ const TextOverlay = styled("div")({
 
 const initialExpandedState = "panel0";
 
+const CustomTextField = styled(TextField)({
+  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#8f6e45",
+  },
+  "& .MuiInputLabel-root.Mui-focused": {
+    color: "#8f6e45",
+  },
+});
+
 const ServiceMenuPage = () => {
   const { serviceName } = useParams();
   const navigate = useNavigate();
@@ -116,6 +132,41 @@ const ServiceMenuPage = () => {
       top: 0,
       behavior: "smooth",
     });
+  };
+
+  let { register, handleSubmit } = useForm();
+  const saveQuote = (data) => {
+    console.log(data, "this is the data");
+    axios
+      .post("http://localhost:6073/quote", data)
+      .then((res) => {
+        console.log(res, "response received");
+      })
+      .catch((error) => {
+        console.error("Error occurred while submitting the form:", error);
+      });
+  };
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleFreeEstimateClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleFormSubmit = (data) => {
+    // Handle form submission logic
+    console.log(data);
+    // Example: Close the dialog after form submission
+    handleClose();
   };
 
   let serviceContent;
@@ -300,12 +351,162 @@ const ServiceMenuPage = () => {
                         fontWeight: "bold",
                       },
                     }}
+                    onClick={handleOpen}
                   >
                     Free estimate
                   </ButtonStyled>
                 </CardContent>
               </ContactCard>
+              <Dialog
+                open={open}
+                onClose={handleClose}
+                maxWidth="sm"
+                fullWidth
+                sx={{ backdropFilter: "blur(3px) sepia(5%)" }}
+              >
+                <DialogTitle>Free out</DialogTitle>
+                <DialogContent>
+                  <Card
+                    className="contact-form-card"
+                    sx={{
+                      position: "absolute",
+                      // top: "50%",
+                      // left: "50%",
+                      // transform: "translate(-50%, -50%)",
+                      maxWidth: 400,
+                      mt: { md: 5 },
+                      filter: "brightness(150%) grayscale(0%)",
+                      backgroundColor: "black",
+                      borderRadius: "12px",
+                      border: "3px solid #8F6E45",
+                    }}
+                  >
+                    <CardContent>
+                      <Typography
+                        variant="h5"
+                        align="center"
+                        sx={{ color: "#8F6E45", fontWeight: "bold" }}
+                      >
+                        Get Free Quote
+                      </Typography>
+                      <form onSubmit={handleSubmit(handleFormSubmit)}>
+                        <Card
+                          className="contact-form-card"
+                          sx={{
+                            maxWidth: 400,
+                            mt: { md: 5 },
+                            filter: "brightness(150%) grayscale(0%)",
+                            backgroundColor: "black",
+                            borderRadius: "12px",
+                            border: "3px solid #8F6E45",
+                          }}
+                        >
+                          <CardContent>
+                            <form onSubmit={handleSubmit(saveQuote)}>
+                              <CustomTextField
+                                label="Name"
+                                fullWidth
+                                margin="normal"
+                                variant="outlined"
+                                focused
+                                InputLabelProps={{
+                                  style: { color: "#8F6E45" },
+                                }}
+                                {...register("name")}
+                                InputProps={{
+                                  style: {
+                                    color: "#8F6E45",
+                                    borderColor: "#8F6E45",
+                                  },
+                                }}
+                              />
+                              <CustomTextField
+                                label="Email"
+                                fullWidth
+                                margin="normal"
+                                focused
+                                InputLabelProps={{
+                                  style: { color: "#8F6E45" },
+                                }}
+                                {...register("email")}
+                                InputProps={{
+                                  style: {
+                                    color: "#8F6E45",
+                                    borderColor: "#8F6E45",
+                                  },
+                                }}
+                              />
+                              <CustomTextField
+                                label="Phone"
+                                fullWidth
+                                margin="normal"
+                                focused
+                                InputLabelProps={{
+                                  style: { color: "#8F6E45" },
+                                }}
+                                {...register("phone")}
+                                InputProps={{
+                                  style: {
+                                    color: "#8F6E45",
+                                    borderColor: "#8F6E45",
+                                  },
+                                }}
+                              />
+                              <CustomTextField
+                                label="Subject"
+                                fullWidth
+                                margin="normal"
+                                focused
+                                InputLabelProps={{
+                                  style: { color: "#8F6E45" },
+                                }}
+                                {...register("subject")}
+                                InputProps={{
+                                  style: {
+                                    color: "#8F6E45",
+                                    borderColor: "#8F6E45",
+                                  },
+                                }}
+                              />
+                              <CustomTextField
+                                label="Description"
+                                fullWidth
+                                multiline
+                                rows={4}
+                                margin="normal"
+                                focused
+                                InputLabelProps={{
+                                  style: { color: "#8F6E45" },
+                                }}
+                                {...register("description")}
+                                InputProps={{
+                                  style: {
+                                    color: "#8F6E45",
+                                    borderColor: "#8F6E45",
+                                  },
+                                }}
+                              />
+                              <Button
+                                type="submit"
+                                variant="contained"
+                                style={{
+                                  backgroundColor: "#8F6E45",
+                                  color: "black",
+                                }}
+                                fullWidth
+                              >
+                                Submit
+                              </Button>
+                            </form>
+                          </CardContent>
+                        </Card>
+                      </form>
+                    </CardContent>
+                  </Card>
+                </DialogContent>
+              </Dialog>
             </Grid>
+
             <Grid item xs={12} md={8}>
               <RenovationSection>
                 <Typography variant="h3" align="left">

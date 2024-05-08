@@ -14,7 +14,7 @@ import {
 import { NavigationContext } from "../MyContextProvider";
 import { useSelector } from "react-redux";
 import BgImage from "../../Images/Blog/blog-v2-3-370x280.jpg";
-import { useContext } from "react";
+import {useState, useContext } from "react";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { useNavigate } from "react-router-dom";
 
@@ -23,7 +23,9 @@ function BlogDetails() {
   const { currentBlogId } = useContext(NavigationContext);
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const selectedBlog = abc.find((blog) => blog.id === currentBlogId);
+  const [selectedBlog, setSelectedBlog] = useState(() =>
+  abc.find((blog) => blog.id === currentBlogId)
+);
   console.log(selectedBlog, "selectedBlog");
 
   const navigate = useNavigate();
@@ -34,6 +36,12 @@ function BlogDetails() {
 
   if (!selectedBlog) {
     return <div>Not found</div>;
+  }
+  const handleBlogClick = (id)=>{
+const blog = abc.find((blog) => blog.id === id)
+setSelectedBlog(blog)
+console.log(selectedBlog) ; 
+
   }
 
   return (
@@ -199,11 +207,12 @@ function BlogDetails() {
             xs={12}
             md={4}
           >
-            <Card
+            <Card cursor = "pointer"
               sx={{
                 height: isSmallScreen ? "100%" : "650px",
                 boxShadow: "25px",
               }}
+            
             >
               <Typography
                 fontWeight="bold"
@@ -214,7 +223,8 @@ function BlogDetails() {
               </Typography>
               <Box sx={{ overflowY: "auto", padding: "10px" }}>
                 {abc.map((blog) => (
-                  <Box key={blog.id} display="flex" sx={{ margin: "15px" }}>
+                  <Box cursor= "pointer" onClick={() => handleBlogClick(blog.id)} 
+                   key={blog.id} display="flex" sx={{ margin: "15px" }}>
                     <CardMedia
                       component="img"
                       src={blog.image}
@@ -222,6 +232,7 @@ function BlogDetails() {
                         borderRadius: "3px",
                         height: "100px",
                         width: "130px",
+                        mt:"25px"
                       }}
                     />
                     <CardContent
@@ -231,7 +242,7 @@ function BlogDetails() {
                         paddingLeft: "15px",
                       }}
                     >
-                      <Typography variant="h6" fontWeight="bold">
+                      <Typography cursor="pointer" variant="h6" fontWeight="bold">
                         {blog.title}
                       </Typography>
                       <Typography color="#d9a95b">{blog.date}</Typography>

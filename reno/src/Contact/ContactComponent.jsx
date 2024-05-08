@@ -13,6 +13,8 @@ import {
   useTheme,
   Typography,
 } from "@mui/material";
+import axios from "axios"
+
 import BgImage from "../Images/Contact/BG.jpg";
 import { Slide } from "react-awesome-reveal";
 import { styled } from "@mui/system";
@@ -22,6 +24,7 @@ import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import BG2 from "../Images/About/Design/interior-design-area-bg.jpg";
 import { useNavigate } from "react-router-dom";
+import {useForm} from "react-hook-form";
 
 const StyledCard = styled(Card)({
   width: "100%",
@@ -53,12 +56,29 @@ const ButtonStyled = styled(Button)({
     background: "#d9a95b",
     color: "black",
     fontWeight: "bold",
+
   },
 });
 
 function ContactComponent() {
   const navigate = useNavigate();
+  let { register, handleSubmit } = useForm();
 
+  const saveQuote = (data) => {
+   
+    console.log(data)
+        axios.post("http://localhost:6073/quote", data)
+      .then(function (resp) {
+        // move("/login")
+        // NotificationManager.success("User Created");
+        console.log(resp)
+          // Handle the response
+      })
+      .catch(function (error) {
+        // Handle errors
+        console.error("Error:", error);
+      });
+        }
   const Homenavi = () => {
     navigate("/");
   };
@@ -277,30 +297,32 @@ function ContactComponent() {
             <StyledCardMedia component="img" src={BG2} />
           </StyledCard>
 
-          <form style={{ width: "100%" }}>
+          <form style={{ width: "100%" }} onSubmit={handleSubmit(saveQuote)}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   sx={{ bgcolor: "#f6f2eb", width: "100%", mb: 2, mt: 3 }}
-                  label="Name"
+                  label="name"
                   fullWidth
                   variant="outlined"
                   InputLabelProps={{ style: { color: "#8f6e45" } }}
                   InputProps={{
                     style: { color: "#8f6e45", borderColor: "#8f6e45" },
                   }}
+                  {...register("name")}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   sx={{ bgcolor: "#f6f2eb", width: "100%", mb: 2, mt: 3 }}
-                  label="Email"
+                  label="email"
                   fullWidth
                   variant="outlined"
                   InputLabelProps={{ style: { color: "#8f6e45" } }}
                   InputProps={{
                     style: { color: "#8f6e45", borderColor: "#8f6e45" },
                   }}
+                  {...register("email")}
                 />
               </Grid>
             </Grid>
@@ -310,25 +332,27 @@ function ContactComponent() {
               <Grid item xs={12} sm={6}>
                 <TextField
                   sx={{ bgcolor: "#f6f2eb", width: "100%", mb: 2, mt: 2 }}
-                  label="Phone"
+                  label="phone"
                   fullWidth
                   variant="outlined"
                   InputLabelProps={{ style: { color: "#8f6e45" } }}
                   InputProps={{
                     style: { color: "#8f6e45", borderColor: "#8f6e45" },
                   }}
+                  {...register("phone")}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   sx={{ bgcolor: "#f6f2eb", width: "100%", mb: 2, mt: 2 }}
-                  label="Subject"
+                  label="subject"
                   fullWidth
                   variant="outlined"
                   InputLabelProps={{ style: { color: "#8f6e45" } }}
                   InputProps={{
                     style: { color: "#8f6e45", borderColor: "#8f6e45" },
                   }}
+                  {...register("subject")}
                 />
               </Grid>
             </Grid>
@@ -337,7 +361,7 @@ function ContactComponent() {
             <Grid item xs={12}>
               <TextField
                 sx={{ bgcolor: "#f6f2eb", width: "100%", mb: 2, mt: 2 }}
-                label="Description"
+                label="description"
                 fullWidth
                 multiline
                 rows={4}
@@ -346,6 +370,7 @@ function ContactComponent() {
                 InputProps={{
                   style: { color: "#8f6e45", borderColor: "#8f6e45" },
                 }}
+                {...register("description")}
               />
             </Grid>
 
@@ -355,9 +380,9 @@ function ContactComponent() {
               xs={12}
               sx={{ display: "flex", justifyContent: "center" }}
             >
-              <ButtonStyled variant="contained">Send Message</ButtonStyled>
+              <ButtonStyled type="submit" variant="contained">Send Message</ButtonStyled>
             </Grid>
-          </form>
+          </form> 
         </Grid>
       </Container>
 

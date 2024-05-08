@@ -36,7 +36,7 @@ import I4 from "../Images/services/Service inside/service-details-v1-3.jpg";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import categories from "./ServicesData";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -339,6 +339,7 @@ const ServiceMenuPage = () => {
                   <Typography variant="h5" align="center" sx={{ mt: 1 }}>
                     Let’s Make a Call For Your Home Interior Designing
                   </Typography>
+                  <Link to ="/contact">
                   <ButtonStyled
                     variant="contained"
                     sx={{
@@ -355,6 +356,7 @@ const ServiceMenuPage = () => {
                   >
                     Free estimate
                   </ButtonStyled>
+                  </Link>
                 </CardContent>
               </ContactCard>
               <Dialog

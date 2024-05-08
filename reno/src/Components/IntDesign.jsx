@@ -89,73 +89,73 @@ const IntDesign = () => {
             </Box>
           </>
         );
-      case "team":
-        return (
-          <>
-            <Grid container spacing={2}>
-              {designers.map((designer, index) => (
-                <Grid item xs={6} key={index}>
-                  <Card
-                    onMouseEnter={() => handleMouseEnter(index)}
-                    onMouseLeave={handleMouseLeave}
-                    sx={{
-                      position: "relative",
-                    }}
-                  >
-                    <StyledCard>
-                      <StyledCardMedia
-                        component="img"
-                        src={designer.image}
-                        alt={designer.name}
-                      />
-                    </StyledCard>
-                    <CardActions
-                      disableSpacing
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        position: "absolute",
-                        bottom: -7,
-                        left: 0,
-                        right: 0,
-                        backgroundColor: "rgba(0, 0, 0, 0.5)",
-                        transition: "opacity 0.3s",
-                        opacity: hovering === index ? 1 : 0,
-                      }}
-                    >
-                      <IconButton>
-                        <FacebookIcon />
-                      </IconButton>
-                      <IconButton>
-                        <InstagramIcon />
-                      </IconButton>
-                      <IconButton>
-                        <PinterestIcon />
-                      </IconButton>
-                    </CardActions>
-                    <CardContent>
-                      <Typography
-                        variant="h6"
-                        color="textPrimary"
-                        align="center"
-                      >
-                        {designer.name}
-                      </Typography>
-                      <Typography
-                        variant="subtitle2"
-                        color="textSecondary"
-                        gutterBottom
-                        align="center"
-                      >
-                        Designer
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-          </>
-        );
+      // case "team":
+      //   return (
+      //     <>
+      //       <Grid container spacing={2}>
+      //         {designers.map((designer, index) => (
+      //           <Grid item xs={6} key={index}>
+      //             <Card
+      //               onMouseEnter={() => handleMouseEnter(index)}
+      //               onMouseLeave={handleMouseLeave}
+      //               sx={{
+      //                 position: "relative",
+      //               }}
+      //             >
+      //               <StyledCard>
+      //                 <StyledCardMedia
+      //                   component="img"
+      //                   src={designer.image}
+      //                   alt={designer.name}
+      //                 />
+      //               </StyledCard>
+      //               <CardActions
+      //                 disableSpacing
+      //                 style={{
+      //                   display: "flex",
+      //                   justifyContent: "center",
+      //                   position: "absolute",
+      //                   bottom: -7,
+      //                   left: 0,
+      //                   right: 0,
+      //                   backgroundColor: "rgba(0, 0, 0, 0.5)",
+      //                   transition: "opacity 0.3s",
+      //                   opacity: hovering === index ? 1 : 0,
+      //                 }}
+      //               >
+      //                 <IconButton>
+      //                   <FacebookIcon />
+      //                 </IconButton>
+      //                 <IconButton>
+      //                   <InstagramIcon />
+      //                 </IconButton>
+      //                 <IconButton>
+      //                   <PinterestIcon />
+      //                 </IconButton>
+      //               </CardActions>
+      //               <CardContent>
+      //                 <Typography
+      //                   variant="h6"
+      //                   color="textPrimary"
+      //                   align="center"
+      //                 >
+      //                   {designer.name}
+      //                 </Typography>
+      //                 <Typography
+      //                   variant="subtitle2"
+      //                   color="textSecondary"
+      //                   gutterBottom
+      //                   align="center"
+      //                 >
+      //                   Designer
+      //                 </Typography>
+      //               </CardContent>
+      //             </Card>
+      //           </Grid>
+      //         ))}
+      //       </Grid>
+      //     </>
+      //   );
       case "work":
         return (
           <>
@@ -278,7 +278,7 @@ const IntDesign = () => {
               Quality Work That Meets Your Expectations
             </Typography>
             <Box display="flex" flexDirection="row">
-              {["material", "team", "work"].map((content) => (
+              {["material", "work"].map((content) => (
                 <Button
                   key={content}
                   onClick={() => handleButtonClick(content)}

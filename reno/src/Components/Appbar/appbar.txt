@@ -596,3 +596,24 @@ const AppBarWithTabs = () => {
                     "&:hover .MuiSvgIcon-root": {
                       color: "white",
                       transition: "color 0.3s ease
+
+
+
+
+
+
+
+
+ {/* {buttons.map((button) => (
+                  <Tab
+                    key={button.id}
+                    label={button.title}
+                    value={button.path}
+                    component="a"
+                    onClick={() => {
+                      navigate(button.path);
+                      scrollToTop();
+                    }}
+                    style={{ fontSize: "14px", marginLeft: "15px" }}
+                  />
+                ))} */}

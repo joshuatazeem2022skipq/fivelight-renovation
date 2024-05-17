@@ -13,7 +13,7 @@ import {
   useTheme,
   Typography,
 } from "@mui/material";
-import axios from "axios"
+import axios from "axios";
 
 import BgImage from "../Images/Contact/BG.jpg";
 import { Slide } from "react-awesome-reveal";
@@ -24,7 +24,7 @@ import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import BG2 from "../Images/About/Design/interior-design-area-bg.jpg";
 import { useNavigate } from "react-router-dom";
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 const StyledCard = styled(Card)({
   width: "100%",
@@ -56,7 +56,6 @@ const ButtonStyled = styled(Button)({
     background: "#d9a95b",
     color: "black",
     fontWeight: "bold",
-
   },
 });
 
@@ -65,20 +64,20 @@ function ContactComponent() {
   let { register, handleSubmit } = useForm();
 
   const saveQuote = (data) => {
-   
-    console.log(data)
-        axios.post("http://localhost:6073/quote", data)
+    console.log(data);
+    axios
+      .post("http://localhost:6073/quote", data)
       .then(function (resp) {
         // move("/login")
         // NotificationManager.success("User Created");
-        console.log(resp)
-          // Handle the response
+        console.log(resp);
+        // Handle the response
       })
       .catch(function (error) {
         // Handle errors
         console.error("Error:", error);
       });
-        }
+  };
   const Homenavi = () => {
     navigate("/");
   };
@@ -143,10 +142,10 @@ function ContactComponent() {
           justifyContent: "center",
           alignItems: "flex-start",
           textAlign: "left",
-          px: { xs: 2, md: 20 },
+          // px: { xs: 2, md: 10 },
         }}
       >
-        <Box sx={{ ml: 10 }}>
+        <Box sx={{ ml: { md: 10, xs: 5 } }}>
           <Slide direction="down" duration={1000} triggerOnce>
             <Stack direction={"row"}>
               <Typography
@@ -172,12 +171,18 @@ function ContactComponent() {
                 -
               </Typography>
               <Typography variant="h4" color="inherit" sx={{ color: "white" }}>
-                Contact Us
+                Contact
               </Typography>
             </Stack>
           </Slide>
           <Slide direction="up" duration={1000} triggerOnce>
-            <Typography variant="h1" sx={{ color: "#d9a95b" }}>
+            <Typography
+              variant="h1"
+              sx={{
+                color: "#d9a95b",
+                fontSize: { xs: "3rem", sm: "4rem", md: "5rem" },
+              }}
+            >
               Contact Us
             </Typography>
           </Slide>
@@ -380,9 +385,11 @@ function ContactComponent() {
               xs={12}
               sx={{ display: "flex", justifyContent: "center" }}
             >
-              <ButtonStyled type="submit" variant="contained">Send Message</ButtonStyled>
+              <ButtonStyled type="submit" variant="contained">
+                Send Message
+              </ButtonStyled>
             </Grid>
-          </form> 
+          </form>
         </Grid>
       </Container>
 

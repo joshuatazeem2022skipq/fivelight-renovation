@@ -65,7 +65,7 @@ const Testimonials = () => {
             flexDirection: "column",
             justifyContent: "center",
             mt: { md: "10em", xs: "5em" },
-            ml: { md: "11em", sm: 0, xs: 0 },
+            ml: { md: "8.5em", sm: 0, xs: 0 },
           }}
         >
           <Typography variant="h5">Client Testimonials</Typography>

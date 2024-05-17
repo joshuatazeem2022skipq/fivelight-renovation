@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Box, Card, CardMedia, IconButton } from "@mui/material";
 
 import SouthIcon from "@mui/icons-material/South";
 import { useState } from "react";
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux";
 import CardDetail from "./CardDetail/CardDetail";
 
-
 const RecentProjects = () => {
-let abc = useSelector((store)=> store.ProductsSection.products)
+  let abc = useSelector((store) => store.ProductsSection.products);
   const [selectedProject, setSelectedProject] = useState(null);
 
+  const cardDetailRef = useRef(null);
+
   const handleProjectClick = (projectId) => {
-    const projectIndex = abc.find(p => p.id === projectId);
+    const projectIndex = abc.find((p) => p.id === projectId);
     setSelectedProject(projectIndex);
+
+    if (cardDetailRef.current) {
+      cardDetailRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
+
   return (
     <div>
       <Box
@@ -71,14 +77,11 @@ let abc = useSelector((store)=> store.ProductsSection.products)
               },
             }}
             onClick={() => handleProjectClick(project.id)}
-
           >
             <CardMedia
               component="img"
               sx={{ height: "auto", width: "100%" }}
-              image={
-               project.imageSrc
-              }
+              image={project.imageSrc}
               alt={project}
             />
             <Box
@@ -137,11 +140,13 @@ let abc = useSelector((store)=> store.ProductsSection.products)
         ))}
       </Box>
       {selectedProject !== null && (
-  <CardDetail
-    project={selectedProject}
-    onClose={() => setSelectedProject(null)}
-  />
-)}
+        <div ref={cardDetailRef}>
+          <CardDetail
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        </div>
+      )}
     </div>
   );
 };

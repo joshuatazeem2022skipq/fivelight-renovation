@@ -24,7 +24,7 @@ const AboutUsMain = () => {
         textAlign: "left",
       }}
     >
-      <Box sx={{ ml: 10 }}>
+      <Box sx={{ ml: { md: 10, xs: 5 } }}>
         <Slide direction="down" duration={1000} triggerOnce>
           <Stack direction={"row"}>
             <Typography
@@ -55,7 +55,13 @@ const AboutUsMain = () => {
           </Stack>
         </Slide>
         <Slide direction="up" duration={1000} triggerOnce>
-          <Typography variant="h1" sx={{ color: "#d9a95b" }}>
+          <Typography
+            variant="h1"
+            sx={{
+              color: "#d9a95b",
+              fontSize: { xs: "3rem", sm: "4rem", md: "5rem" },
+            }}
+          >
             About Us
           </Typography>
         </Slide>

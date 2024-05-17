@@ -1,11 +1,10 @@
 import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
-import BgImage from "../Images/Banner/pexels-05.jpg";
+import BgImage from "../Images/Banner/Pexel7.jpeg";
 import { Slide } from "react-awesome-reveal";
 import { useNavigate } from "react-router-dom";
 
 const Portfolio = () => {
-
   const navigate = useNavigate();
 
   const Homenavi = () => {
@@ -25,7 +24,7 @@ const Portfolio = () => {
         textAlign: "left", // Align children text to the left
       }}
     >
-     <Box sx={{ ml: 10 }}>
+      <Box sx={{ ml: { md: 10, xs: 5 } }}>
         <Slide direction="down" duration={1000} triggerOnce>
           <Stack direction={"row"}>
             <Typography
@@ -51,13 +50,19 @@ const Portfolio = () => {
               -
             </Typography>
             <Typography variant="h4" color="inherit" sx={{ color: "white" }}>
-            Portfolio
+              Portfolio
             </Typography>
           </Stack>
         </Slide>
         <Slide direction="up" duration={1000} triggerOnce>
-          <Typography variant="h1" sx={{ color: "#d9a95b" }}>
-          Our Portfolio
+          <Typography
+            variant="h1"
+            sx={{
+              color: "#d9a95b",
+              fontSize: { xs: "3rem", sm: "4rem", md: "5rem" },
+            }}
+          >
+            Our Portfolio
           </Typography>
         </Slide>
       </Box>

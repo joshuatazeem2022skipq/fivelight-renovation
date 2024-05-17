@@ -112,9 +112,12 @@ const ServiceMenuPage = () => {
   const selectedService = categories.find(
     (service) => service.title.toLowerCase() === serviceName.toLowerCase()
   );
+  const [selectedCategory, setSelectedCategory] = useState(serviceName);
 
   const handleNavigation = (path) => {
     navigate(path);
+    scrollToTop();
+    setSelectedCategory(path);
   };
 
   const [expanded, setExpanded] = React.useState(initialExpandedState);
@@ -184,10 +187,10 @@ const ServiceMenuPage = () => {
             justifyContent: "center",
             alignItems: "flex-start",
             textAlign: "left",
-            px: { xs: 2, md: 20 },
+            px: { xs: 2, md: 10 },
           }}
         >
-          <Box sx={{ ml: 10 }}>
+          <Box sx={{ ml: { md: 10, xs: 5 } }}>
             <Slide direction="down" duration={1000} triggerOnce>
               <Stack direction={"row"}>
                 <Typography
@@ -225,7 +228,13 @@ const ServiceMenuPage = () => {
               </Stack>
             </Slide>
             <Slide direction="up" duration={1000} triggerOnce>
-              <Typography variant="h1" sx={{ color: "#d9a95b" }}>
+              <Typography
+                variant="h1"
+                sx={{
+                  color: "#d9a95b",
+                  fontSize: { xs: "3rem", sm: "4rem", md: "5rem" },
+                }}
+              >
                 {selectedService.title}
               </Typography>
             </Slide>
@@ -249,24 +258,33 @@ const ServiceMenuPage = () => {
                           marginBottom: "8px",
                           width: "100%",
                           height: "34px",
-                          backgroundColor: "black",
-                          color: "white",
+                          backgroundColor:
+                            selectedCategory === category.path
+                              ? "black"
+                              : "#d9a95b",
+                          color:
+                            selectedCategory === category.path
+                              ? "white"
+                              : "black",
                           textAlign: "left",
                           justifyContent: "flex-start",
                           paddingLeft: "10px",
                           transition:
                             "color 0.3s ease-in-out, background-color 0.3s ease-in-out",
+                          borderRadius: "4px",
                           "&:hover": {
-                            backgroundColor: "white",
-                            color: "black",
+                            backgroundColor:
+                              selectedCategory === category.path
+                                ? "#d9a95b"
+                                : "black",
+                            color:
+                              selectedCategory === category.path
+                                ? "black"
+                                : "white",
                             fontWeight: "bold",
                           },
                         }}
-                        // href={category.path}
-                        onClick={() => {
-                          handleNavigation(category.path);
-                          scrollToTop();
-                        }}
+                        onClick={() => handleNavigation(category.path)}
                       >
                         {category.title}
                       </ToggleButton>
@@ -339,23 +357,23 @@ const ServiceMenuPage = () => {
                   <Typography variant="h5" align="center" sx={{ mt: 1 }}>
                     Let’s Make a Call For Your Home Interior Designing
                   </Typography>
-                  <Link to ="/contact">
-                  <ButtonStyled
-                    variant="contained"
-                    sx={{
-                      mt: 6,
-                      width: "220px",
-                      height: "45px",
-                      "&:hover": {
-                        background: "#d9a95b",
-                        color: "black",
-                        fontWeight: "bold",
-                      },
-                    }}
-                    onClick={handleOpen}
-                  >
-                    Free estimate
-                  </ButtonStyled>
+                  <Link to="/contact">
+                    <ButtonStyled
+                      variant="contained"
+                      sx={{
+                        mt: 6,
+                        width: "220px",
+                        height: "45px",
+                        "&:hover": {
+                          background: "#d9a95b",
+                          color: "black",
+                          fontWeight: "bold",
+                        },
+                      }}
+                      onClick={handleOpen}
+                    >
+                      Free estimate
+                    </ButtonStyled>
                   </Link>
                 </CardContent>
               </ContactCard>
@@ -533,7 +551,9 @@ const ServiceMenuPage = () => {
             </Grid>
             <Grid item xs={12} md={4}></Grid>
             <Grid item xs={12} md={8} sx={{ position: "relative" }}>
-              <RenovationCard>
+              <RenovationCard
+                sx={{ height: { md: "200px", xs: "350px", sm: "200px" } }}
+              >
                 <CardContent>
                   <CardMedia
                     component="img"
@@ -547,8 +567,8 @@ const ServiceMenuPage = () => {
                       align="center"
                       sx={{
                         color: "black",
-                        fontStyle: "italic",
-                        fontFamily: "fantasy",
+                        // fontStyle: "italic",
+                        fontFamily: "revert-layer",
                       }}
                     >
                       {selectedService.quote}

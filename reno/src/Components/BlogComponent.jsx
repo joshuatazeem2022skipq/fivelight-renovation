@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
   Typography,
@@ -14,6 +14,9 @@ import B3 from "../Images/About/Blog/blog-v2-3-370x280.jpg";
 import { styled } from "@mui/system";
 import { Fade } from "react-awesome-reveal";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { useSelector } from "react-redux";
+import { NavigationContext } from "./MyContextProvider";
+import { useNavigate } from "react-router-dom";
 
 const StyledCard = styled(Card)({
   width: "90%",
@@ -51,34 +54,28 @@ const StyledCardMedia = styled(CardMedia)({
   },
 });
 
-const blogData = [
-  {
-    id: 1,
-    image: B1,
-    title: "How to protect your damaged walls",
-    date: "01/01/2023",
-    description:
-      "There are not many passages of lorem ipsum available alteration in",
-  },
-  {
-    id: 2,
-    image: B2,
-    title: "Learn the right way to use wall sheets",
-    date: "02/02/2023",
-    description:
-      "There are not many passages of lorem ipsum available alteration in",
-  },
-  {
-    id: 3,
-    image: B3,
-    title: "Difference between wallpaper and sheets",
-    date: "03/03/2023",
-    description:
-      "There are not many passages of lorem ipsum available alteration in",
-  },
-];
-
 const BlogComponent = () => {
+  const navigate = useNavigate();
+  let abc = useSelector((store) => store.BlogsSection.Blogs);
+  const [selectedBlog, setSelectedBlog] = useState(null);
+  const handleClick = (id) => {
+    const selected = abc.find((blog) => blog.id === id);
+    console.log("Selected Project:", selected);
+    setSelectedBlog(selected);
+  };
+  const { navigateToBlogDetail } = useContext(NavigationContext);
+  const handleBlogClick = (blogId) => {
+    navigateToBlogDetail(blogId);
+    // You can also use history.push or any other routing method here
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <Box
       sx={{
@@ -126,14 +123,14 @@ const BlogComponent = () => {
         }}
       >
         <Grid container spacing={2} justifyContent="center">
-          {blogData.map((blog) => (
+          {abc.map((blog) => (
             <Grid
               item
               key={blog.id}
               xs={12}
               sm={6}
               md={4}
-              sx={{ mt: { md: 23, xs: 3 } }}
+              sx={{ mt: { md: 3, xs: 3 } }}
             >
               <Fade
                 direction="up"
@@ -144,18 +141,22 @@ const BlogComponent = () => {
                 <Card
                   sx={{
                     width: "100%",
-                    height: "480px",
+                    height: "420px",
                     borderRadius: "12px",
                     marginBottom: "10px",
                     border: "1px solid #d9a95b",
                     background: "#1a1a1a",
                   }}
                 >
-                  <StyledCard>
+                  <StyledCard sx={{ height: 170, cursor: "pointer" }}>
                     <StyledCardMedia
                       component="img"
                       src={blog.image}
                       alt={blog.name}
+                      onClick={() => {
+                        navigate("/blogs");
+                        scrollToTop();
+                      }}
                     />
                   </StyledCard>
 
@@ -188,7 +189,7 @@ const BlogComponent = () => {
                           marginRight: "10px",
                           color: "white",
                           backgroundColor: "#d9a95b",
-                          width: "36%",
+                          width: "45%",
                           border: "2px solid #d9a95b",
                           borderRadius: "15px",
                         }}
@@ -211,10 +212,19 @@ const BlogComponent = () => {
                           cursor: "pointer",
                         },
                       }}
+                      onClick={() => {
+                        navigate("/blogs");
+                        scrollToTop();
+                      }}
                     >
                       {blog.title}
                     </Typography>
-                    <Typography variant="body1" color="HighlightText" mt={2}>
+                    <Typography
+                      variant="body1"
+                      align="center"
+                      color="HighlightText"
+                      mt={2}
+                    >
                       {blog.description}
                     </Typography>
                   </CardContent>

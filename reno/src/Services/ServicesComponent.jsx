@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
-import BgImage from "../Images/Banner/pexels-05.jpg";
+import BgImage from "../Images/Banner/pexels-01.jpg";
 import { Slide } from "react-awesome-reveal";
 import { useNavigate } from "react-router-dom";
 
@@ -24,7 +24,7 @@ const ServicesComponent = () => {
         textAlign: "left",
       }}
     >
-      <Box sx={{ ml: 10 }}>
+      <Box sx={{ ml: { md: 10, xs: 5 } }}>
         <Slide direction="down" duration={1000} triggerOnce>
           <Stack direction={"row"}>
             <Typography
@@ -55,7 +55,13 @@ const ServicesComponent = () => {
           </Stack>
         </Slide>
         <Slide direction="up" duration={1000} triggerOnce>
-          <Typography variant="h1" sx={{ color: "#d9a95b" }}>
+          <Typography
+            variant="h1"
+            sx={{
+              color: "#d9a95b",
+              fontSize: { xs: "3rem", sm: "4rem", md: "5rem" },
+            }}
+          >
             Our Services
           </Typography>
         </Slide>

@@ -14,7 +14,7 @@ myApp.use(cors());
 
 myApp.post("/create-user", async (req, res) => {
   console.log(req.body);
-
+  const { email } = req.body;
   const exisitingUser = await User.findOne({ email: req.body.email });
   if (exisitingUser) {
     return res.status(400).json({ error: "already exists" });
@@ -38,7 +38,7 @@ myApp.post("/create-user", async (req, res) => {
 
   var mailOptions = {
     from: "mariaimran787898@gmail.com",
-    to: "iammariaimran4545@gmail.com",
+    to: email,
     subject: "Email Verification Email",
     text: `http://localhost:3000/reset-password/${data.id}/${token}`,
   };
@@ -61,6 +61,7 @@ myApp.post("/create-user", async (req, res) => {
 
 myApp.post("/quote", async (req, res) => {
   try {
+    const { name, email, phone, subject, description } = req.body;
     // Create a new instance of the Quote model with the request body
     let data = new Quote(req.body);
     console.log(data, "Data received from frontend");
@@ -68,6 +69,34 @@ myApp.post("/quote", async (req, res) => {
     // Save the data to the database
     await data.save();
 
+    const token = jsonwebtoken.sign({ id: data.id }, "cat says meows", {
+      expiresIn: "2d",
+    });
+
+    var transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "mariaimran787898@gmail.com",
+        pass: "iumm ongk ihkx lqul",
+      },
+    });
+
+    var mailOptions = {
+      from: email,
+      to: "mariaimran787898@gmail.com",
+      subject: subject, // Email subject
+      text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\nPhone: ${phone}\nDescription: ${description}`, // Email body (plain text)
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+        return res.send({ status: "error sending email" });
+      } else {
+        console.log("Email sent: " + info.response);
+        return res.send({ status: "success" });
+      }
+    });
     // Respond with a success message
     res.json({
       success: true,

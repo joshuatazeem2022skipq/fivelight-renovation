@@ -172,16 +172,19 @@ const ServicesList = () => {
         >
           {Services.map((service) => (
             <Fade
+              key={service.id}
               direction="up"
               duration={50 * service.id}
               className={service}
-              key={service.id}
               triggerOnce
             >
               <Card
-                key={service.id}
                 sx={{
-                  width: "300px",
+                  width: {
+                    xs: "calc(50% - 10px)",
+                    sm: "calc(50% - 20px)",
+                    md: "300px",
+                  }, // Adjust based on screen width
                   marginBottom: "20px",
                   position: "relative",
                 }}
@@ -192,16 +195,6 @@ const ServicesList = () => {
                     src={service.image}
                     alt={service.title}
                   />
-                  <Box className={background}>
-                    <Box className={rightSection}>
-                      <Box className={`rightbackground rightbackground1`}></Box>
-                      <Box className={`leftbackground rightbackground1`}></Box>
-                    </Box>
-                    <Box className={leftSection}>
-                      <Box className={`rightbackground rightbackground1`}></Box>
-                      <Box className={`leftbackground rightbackground1`}></Box>
-                    </Box>
-                  </Box>
                 </StyledCard>
                 <CardContent
                   sx={{
@@ -222,16 +215,22 @@ const ServicesList = () => {
                   >
                     {service.desc}
                   </Typography>
-                  <Link
-                    to={`/services/${service.title.toLowerCase()}`}
-                    onClick={() => scrollToTop()}
-                  >
-                    <Box sx={{ textAlign: "center", marginTop: "auto" }}>
-                      <Avatar sx={{ backgroundColor: "#daaa5e" }}>
+
+                  <Box sx={{ textAlign: "center", marginTop: "auto" }}>
+                    <Link
+                      to={`/services/${service.title.toLowerCase()}`}
+                      onClick={() => scrollToTop()}
+                    >
+                      <Avatar
+                        sx={{
+                          backgroundColor: "#daaa5e",
+                          border: "1px solid white",
+                        }}
+                      >
                         <SouthIcon />
                       </Avatar>
-                    </Box>
-                  </Link>
+                    </Link>
+                  </Box>
                 </CardContent>
               </Card>
             </Fade>

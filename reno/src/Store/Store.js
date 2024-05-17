@@ -123,16 +123,18 @@ let BlogsData = {
       image: B1,
       title: "How to protect your damaged walls",
       date: "01/01/2023",
-      description:
-        "There are not many passa,f erkjkbfubej vd hjer fe f j vdv gj  rjhg hej fvndv e fnvjer n vndfvbd v nd vn dges of lorem ipsum available alteration in",
+      description: "Save Your Walls: Repair Solutions and Preventative Tips",
+      Paragraph:
+        "Have your once pristine walls become a canvas of imperfections – a collection of holes, scratches, or even worse, water damage? Don't fret! This comprehensive guide is here to empower you as a home improvement warrior. We'll equip you with the knowledge to not only tackle existing damage but also implement preventative measures to keep your walls looking their best. From simple patching techniques for minor dings to solutions for more extensive repairs like water damage, we've got you covered. We'll also delve into clever preventative measures like corner guards and strategic furniture placement, helping you avoid future mishaps. With a little effort and the right tools (don't worry, we'll guide you through those too!), you can restore your walls to their smooth and beautiful glory, and keep them that way for years to come.",
     },
     {
       id: 2,
       image: B2,
       title: "Learn the right way to use wall sheets",
       date: "02/02/2023",
-      description:
-        "There are not many pas dfdfdgdfvd f vfgr dfvedfsagev freglktt rglkgklaa frt4tfs s d vcergtdslkf of lorem ipsu xhbfhvbfbbcjdbhsjcssbcsbm available alteration in",
+      description: "Wall Sheets: A Quick and Easy Fix Done Right",
+      Paragraph:
+        "Wall sheets have become a popular choice for sprucing up your space. They offer a quick, easy, and often budget-friendly way to transform a room. But with so many varieties available, navigating the world of wall sheets can feel overwhelming. This guide will equip you with the knowledge to use wall sheets effectively. We'll delve into the different types of wall sheets, from self-adhesive to vinyl, and their ideal applications. You'll learn how to properly prepare your walls for installation and discover expert tips for achieving a flawless finish.  Whether you're a seasoned DIYer or a complete beginner, this guide will empower you to unlock the full potential of wall sheets and breathe new life into your walls.",
     },
     {
       id: 3,
@@ -140,7 +142,9 @@ let BlogsData = {
       title: "Difference between wallpaper and sheets",
       date: "03/03/2023",
       description:
-        "There are not many passages v fj vj cchjbwoodnqj jqwnis njdxqn lNQERWE qdjkkk ncd vjkekof lorem ipsum available alteration in",
+        "Wallpaper vs. Wall Sheets: Choosing the Perfect Wall Covering for You",
+      Paragraph:
+        "Both wallpaper and wall sheets offer exciting ways to add personality and style to your walls. But with so many options available, deciding between the two can be tricky. This guide will break down the key differences between wallpaper and wall sheets, helping you choose the perfect solution for your needs. We'll compare their material composition, design options, ease of installation, and durability. From the classic elegance of wallpaper to the modern convenience of wall sheets, this breakdown will empower you to make an informed decision and achieve the stunning wall transformation you desire.",
     },
   ],
 };

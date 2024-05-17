@@ -48,7 +48,7 @@ const AboutComponent = () => {
                   variant="h2"
                   color="black"
                   my={4}
-                  // sx={{ border: "1px solid black" }}
+                  sx={{ fontSize: { xs: "2.5rem", sm: "3rem", md: "4rem" } }}
                   gutterBottom
                 >
                   We’re Leader in Interior Design Market

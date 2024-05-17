@@ -175,24 +175,24 @@ const IntDesign = () => {
                     image={P1}
                     alt="Project 1"
                   />
-                  {hovering === 1 && (
-                    <CardContent
-                      style={{
-                        position: "absolute",
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        backgroundColor: "rgba(255, 255, 255, 0.8)",
-                        borderRadius: "10px",
-                        textAlign: "center",
-                        transition: "transform 0.3s",
-                      }}
-                    >
-                      <Typography variant="h5" color="textPrimary">
-                        Washroom wall design
-                      </Typography>
-                    </CardContent>
-                  )}
+
+                  <CardContent
+                    style={{
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      backgroundColor: "rgba(255, 255, 255, 0.8)",
+                      borderRadius: "10px",
+                      textAlign: "center",
+                      transition: "transform 0.7s ease",
+                      transform: `translateY(${hovering === 1 ? "0" : "100%"})`,
+                    }}
+                  >
+                    <Typography variant="h5" color="textPrimary">
+                      Washroom wall design
+                    </Typography>
+                  </CardContent>
                 </Card>
               </Grid>
               <Grid item xs={6}>
@@ -210,24 +210,23 @@ const IntDesign = () => {
                     image={P2}
                     alt="Project 2"
                   />
-                  {hovering === 2 && (
-                    <CardContent
-                      style={{
-                        position: "absolute",
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        backgroundColor: "rgba(255, 255, 255, 0.8)",
-                        borderRadius: "10px",
-                        textAlign: "center",
-                        transition: "transform 0.3s",
-                      }}
-                    >
-                      <Typography variant="h5" color="textPrimary">
-                        Washroom wall design
-                      </Typography>
-                    </CardContent>
-                  )}
+                  <CardContent
+                    style={{
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      backgroundColor: "rgba(255, 255, 255, 0.8)",
+                      borderRadius: "10px",
+                      textAlign: "center",
+                      transition: "transform 0.7s ease",
+                      transform: `translateY(${hovering === 2 ? "0" : "100%"})`,
+                    }}
+                  >
+                    <Typography variant="h5" color="textPrimary">
+                      Washroom wall design
+                    </Typography>
+                  </CardContent>
                 </Card>
               </Grid>
             </Grid>

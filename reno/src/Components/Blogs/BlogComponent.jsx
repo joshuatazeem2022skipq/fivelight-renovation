@@ -1,4 +1,4 @@
-import { useContext, React} from "react";
+import { useContext, React } from "react";
 import {
   Box,
   Typography,
@@ -8,7 +8,8 @@ import {
   CardMedia,
   CardContent,
   Grid,
-  useMediaQuery, useTheme 
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 // import B1 from "../Blog/blog-v2-1-370x280.jpg"
 // import B2 from "../Blog/blog-v2-2-370x280.jpg"
@@ -18,9 +19,11 @@ import { Container, styled } from "@mui/system";
 import { Fade } from "react-awesome-reveal";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Slide } from "react-awesome-reveal";
-import BgImage from "./BG1.jpeg";
+import BgImage from "../../Images/Banner/Pexel6.jpeg";
 import { useState } from "react";
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 const StyledCard = styled(Card)({
   width: "90%",
   height: 200,
@@ -84,11 +87,10 @@ const StyledCardMedia = styled(CardMedia)({
 //   },
 // ];
 
-
 const BlogComponent = () => {
+  const navigate = useNavigate();
 
-
-  let abc = useSelector((store)=> store.BlogsSection.Blogs)
+  let abc = useSelector((store) => store.BlogsSection.Blogs);
   const [selectedBlog, setSelectedBlog] = useState(null);
   const handleClick = (id) => {
     const selected = abc.find((blog) => blog.id === id);
@@ -99,202 +101,254 @@ const BlogComponent = () => {
   const handleBlogClick = (blogId) => {
     navigateToBlogDetail(blogId);
     // You can also use history.push or any other routing method here
-};
-
+  };
 
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const Homenavi = () => {
+    navigate("/");
+  };
   return (
     <div>
-
-<Box
-    sx={{
-      backgroundImage: `url(${BgImage})`,
-      height: "50vh",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "flex-start",
-      textAlign: "left",
-      px: { xs: 2, md: 20 },
-    }}
-  >
-    <Slide direction="down" duration={4000} triggerOnce>
-      <Stack
-        direction={{ xs: "column", sm: "row" }}
-        alignItems="center"
-        spacing={2}
-      >
-        <Typography variant="h2" color="inherit" sx={{ color: "white" }}>
-          Home
-        </Typography>
-        <Typography variant="h2" color="inherit" sx={{ color: "white" }}>
-          -
-        </Typography>
-        <br></br>
-        <Typography variant="h1" color="inherit" sx={{ color: "Black" }}>
-          Latest News
-        </Typography>
-      </Stack>
-    </Slide>
-  </Box>
-  
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: { xs: "column", md: "row" },
-        height: "100vh",
-        mb: { md: 0, xs: 10 },
-      }}
-    >
-
-
       <Box
         sx={{
-          backgroundColor: "#f6f2eb",
-          mt: 5,
-          borderRadius: 10,
-          // width: { xs: "94.8%", sm: "94.8%", md: "60%", lg: "40%" },
-          width: { xs: "100%", sm: "94.8%", md: "40%", lg: "40%" },
-height:470,
+          backgroundImage: `url(${BgImage})`,
+          height: "50vh",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
           justifyContent: "center",
-          padding: { xs: "10px", sm: "20px", md: "30px" },
+          alignItems: "flex-start",
+          textAlign: "left",
+          // px: { xs: 2, md: 20 },
         }}
       >
-        <Typography variant="h6">News & Updates</Typography>
-        <Divider
-          sx={{
-            width: "50%",
-            marginY: "5px",
-            border: "2px solid #d9a95b",
-          }}
-        />
-        <Typography variant="h2" align="center" color="textPrimary">
-          Recent Blog Posts
-        </Typography>
+        <Box sx={{ ml: { md: 10, xs: 5 } }}>
+          <Slide direction="down" duration={1000} triggerOnce>
+            <Stack direction={"row"}>
+              <Typography
+                variant="h4"
+                color="inherit"
+                sx={{
+                  color: "white",
+                  cursor: "pointer",
+                  transition: "color 0.3s ease-in-out",
+                  "&:hover": {
+                    color: "#d9a95b",
+                  },
+                }}
+                onClick={Homenavi}
+              >
+                Home
+              </Typography>
+              <Typography
+                variant="h4"
+                color="inherit"
+                sx={{ color: "white", ml: 2, mr: 2 }}
+              >
+                -
+              </Typography>
+              <Typography variant="h4" color="inherit" sx={{ color: "white" }}>
+                Blogs
+              </Typography>
+            </Stack>
+          </Slide>
+          <Slide direction="up" duration={1000} triggerOnce>
+            <Typography
+              variant="h1"
+              sx={{
+                color: "#d9a95b",
+                fontSize: { xs: "3rem", sm: "4rem", md: "5rem" },
+              }}
+            >
+              Latest News
+            </Typography>
+          </Slide>
+        </Box>
       </Box>
 
       <Box
         sx={{
-          width: { xs: "90%", md: "60%", sm: "90%" },
-          padding: { md: "20px", xs: "20px", sm: "40px" },
-          Height: "100%",
-          overflowY: "auto",
-          pt: "20px",
           display: "flex",
-          justifyContent: "center",
+          flexDirection: { xs: "column", md: "row" },
+          height: "100vh",
+          mb: { md: 0, xs: 10 },
         }}
       >
-        <Grid container spacing={2} justifyContent="center">
-          {abc.map((blog) => (
-            <Grid
-              item
-              key={blog.id}
-              xs={12}
-              sm={6}
-              md={4}
-              sx={{ mt: { md: 3, xs: 3 } }}
-            >
-              <Fade
-                direction="up"
-                duration={500 * blog.id}
+        {/* <Box
+          sx={{
+            backgroundColor: "#f6f2eb",
+            mt: 5,
+            borderRadius: 10,
+            // width: { xs: "94.8%", sm: "94.8%", md: "60%", lg: "40%" },
+            width: { xs: "100%", sm: "94.8%", md: "40%", lg: "40%" },
+            height: 470,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: { xs: "10px", sm: "20px", md: "30px" },
+          }}
+        >
+          <Typography variant="h6">News & Updates</Typography>
+          <Divider
+            sx={{
+              width: "50%",
+              marginY: "5px",
+              border: "2px solid #d9a95b",
+            }}
+          />
+          <Typography variant="h2" align="center" color="textPrimary">
+            Recent Blog Posts
+          </Typography>
+        </Box> */}
+        <Box
+          sx={{
+            backgroundColor: "#f6f2eb",
+            // width: { xs: "94.8%", sm: "94.8%", md: "60%", lg: "40%" },
+            width: { xs: "100%", sm: "94.8%", md: "40%", lg: "40%" },
+
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: { xs: "10px", sm: "20px", md: "30px" },
+          }}
+        >
+          <Typography variant="h6">News & Updates</Typography>
+          <Divider
+            sx={{
+              width: "50%",
+              marginY: "10px",
+              border: "2px solid #d9a95b",
+            }}
+          />
+          <Typography variant="h2" align="center" color="textPrimary">
+            Recent Blog Posts
+          </Typography>
+        </Box>
+
+        <Box
+          sx={{
+            width: { xs: "90%", md: "60%", sm: "90%" },
+            padding: { md: "20px", xs: "20px", sm: "40px" },
+            Height: "100%",
+            overflowY: "auto",
+            pt: "20px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Grid container spacing={2} justifyContent="center">
+            {abc.map((blog) => (
+              <Grid
+                item
                 key={blog.id}
-                triggerOnce
+                xs={12}
+                sm={6}
+                md={4}
+                sx={{ mt: { md: 3, xs: 3 } }}
               >
-                <Card
-                  sx={{
-                    width: "100%",
-                    borderRadius: "12px",
-                    marginBottom: "10px",
-                    border: "1px solid #d9a95b",
-                    background: "#1a1a1a",
-                  }}
-                  onClick={() => handleBlogClick(blog.id)}
+                <Fade
+                  direction="up"
+                  duration={500 * blog.id}
+                  key={blog.id}
+                  triggerOnce
                 >
-                  <StyledCard sx={{height: 170}}>
-                    <StyledCardMedia
-                    
-                      component="img"
-                      src={blog.image}
-                      alt={blog.name}
-                    />
-                  </StyledCard>
+                  <Card
+                    sx={{
+                      width: "100%",
+                      height: "420px",
+                      borderRadius: "12px",
+                      marginBottom: "10px",
+                      border: "1px solid #d9a95b",
+                      background: "#1a1a1a",
+                    }}
+                  >
+                    <StyledCard sx={{ height: 170, cursor: "pointer" }}>
+                      <StyledCardMedia
+                        component="img"
+                        src={blog.image}
+                        alt={blog.name}
+                        onClick={() => handleBlogClick(blog.id)}
+                      />
+                    </StyledCard>
 
-                  <CardContent>
-                    <Typography
-                      variant="subtitle2"
-                      color="textSecondary"
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        mb: 3,
-                      }}
-                    >
-                      <span
-                        style={{
-                          color: "#d9a95b",
+                    <CardContent>
+                      <Typography
+                        variant="subtitle2"
+                        color="textSecondary"
+                        sx={{
                           display: "flex",
+                          justifyContent: "space-between",
                           alignItems: "center",
+                          mb: 3,
                         }}
                       >
-                        <AccountCircleOutlinedIcon
-                          sx={{ marginRight: "5px", mt: -0.4 }}
-                        />
-                        by Admin
-                      </span>
+                        <span
+                          style={{
+                            color: "#d9a95b",
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          <AccountCircleOutlinedIcon
+                            sx={{ marginRight: "5px", mt: -0.4 }}
+                          />
+                          by Admin
+                        </span>
 
-                      <Box
-                        style={{
-                          marginRight: "10px",
+                        <Box
+                          style={{
+                            marginRight: "10px",
+                            color: "white",
+                            backgroundColor: "#d9a95b",
+                            width: "45%",
+                            border: "2px solid #d9a95b",
+                            borderRadius: "15px",
+                          }}
+                        >
+                          <Typography align="center">{blog.date}</Typography>
+                        </Box>
+                      </Typography>
+                      <Typography
+                        variant="h6"
+                        align="center"
+                        sx={{
+                          border: "2px solid #d9a95b ",
+
+                          borderRadius: "12px",
                           color: "white",
-                          backgroundColor: "#d9a95b",
-                          width: "45%",
-                          border: "2px solid #d9a95b",
-                          borderRadius: "15px",
+                          "&:hover": {
+                            textShadow:
+                              "0 0 12px #d9a95b, 0 0 25px #d9a95b, 0 0 35px #d9a95b, 0 0 45px #d9a95b",
+                            transition: "text-shadow 0.3s ease",
+                            cursor: "pointer",
+                          },
                         }}
+                        onClick={() => handleBlogClick(blog.id)}
                       >
-                        <Typography align="center">{blog.date}</Typography>
-                      </Box>
-                    </Typography>
-                    <Typography
-                      variant="h6"
-                      align="center"
-                      sx={{
-                        border: "2px solid #d9a95b ",
-
-                        borderRadius: "12px",
-                        color: "white",
-                        "&:hover": {
-                          textShadow:
-                            "0 0 12px #d9a95b, 0 0 25px #d9a95b, 0 0 35px #d9a95b, 0 0 45px #d9a95b",
-                          transition: "text-shadow 0.3s ease",
-                          cursor: "pointer",
-                        },
-                      }}
-                    >
-                      {blog.title}
-                    </Typography>
-                    <Typography variant="body1" color="HighlightText" mt={2}>
-                      {blog.description}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Fade>
-            </Grid>
-          ))}
-        </Grid>
+                        {blog.title}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        align="center"
+                        color="HighlightText"
+                        mt={2}
+                      >
+                        {blog.description}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Fade>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
       </Box>
-    </Box>
-
-    
     </div>
-
   );
 };
 

@@ -88,7 +88,10 @@ const ContactAbout = () => {
                 <Typography
                   variant="h3"
                   color={"HighlightText"}
-                  sx={{ ml: { md: 3, xs: 6.5 } }}
+                  sx={{
+                    ml: { md: 3, xs: 6.5 },
+                    fontSize: { xs: "2.5rem", sm: "3rem", md: "3rem" },
+                  }}
                 >
                   <div>
                     <p className="hoverEffect">
@@ -119,7 +122,7 @@ const ContactAbout = () => {
                   color={"HighlightText"}
                   sx={{
                     mt: { md: 12, xs: 6, sm: 9 },
-                    width: { md: "70%", xs: "90%", sm: "100%" },
+                    width: { md: "90%", xs: "90%", sm: "100%" },
                     ml: { xs: 5, sm: 9 },
                   }}
                 >

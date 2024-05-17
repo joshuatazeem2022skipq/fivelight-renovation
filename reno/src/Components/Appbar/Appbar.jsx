@@ -31,6 +31,7 @@ import PinterestIcon from "@mui/icons-material/Pinterest";
 import "../../Styles/Banner.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Layout/Auth";
+import { useActiveTab } from "../../Layout/useActiveTab";
 
 const buttons = [
   { id: 1, title: "Home", path: "/" },
@@ -67,28 +68,31 @@ const AppBarWithTabs = () => {
   const isAdmin = () => {
     return user && user.role === "admin";
   };
- 
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState(
-    localStorage.getItem("activeTab") || "/"
-  );
-  useEffect(() => {
-    // Remove activetab from local storage when the component unmounts
-    return () => {
-      localStorage.removeItem("activeTab");
-      
-    };
-  }, []);
+  // const [activeTab, setActiveTab] = useState(
+  //   localStorage.getItem("activeTab") || "/"
+  // );
+  const { activeTab, setActiveTab } = useActiveTab();
+
+  // useEffect(() => {
+  //   return () => {
+  //     localStorage.removeItem("activeTab");
+  //   };
+  // }, []);
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
+  };
+  const handleDrawerClose = () => {
+    setIsDrawerOpen(false);
   };
 
   const handleTabChange = (newValue) => {
     setActiveTab(newValue);
-    localStorage.setItem("activeTab", newValue);
+    // localStorage.setItem("activeTab", newValue);
   };
   const [showAppBar, setShowAppBar] = useState(false);
 
@@ -118,6 +122,24 @@ const AppBarWithTabs = () => {
       behavior: "smooth",
     });
   };
+
+  const handleBookAppointmentClick = () => {
+    const contactTabIndex = buttons.findIndex(
+      (button) => button.path === "/contact"
+    );
+    if (contactTabIndex !== -1) {
+      setActiveTab(contactTabIndex);
+      navigate("/contact");
+    }
+  };
+
+  useEffect(() => {
+    const currentPath = window.location.pathname;
+    const activeTabIndex = buttons.findIndex(
+      (button) => button.path === currentPath
+    );
+    setActiveTab(activeTabIndex !== -1 ? activeTabIndex : 0);
+  }, []);
 
   return (
     <>
@@ -284,25 +306,23 @@ const AppBarWithTabs = () => {
                   alignItems: "center",
                 }}
               >
-                <Link to = "/contact">
-                <Button
-                  color="inherit"
-                  variant="outlined"
-                  sx={{
-                    color: "white",
-                    backgroundColor: "#d9a95b",
-                    borderRadius: "26px",
-                    mx: { md: 8, xs: 0 },
-                    height: { md: "30px", xs: "50px" },
-                    "&:hover": { backgroundColor: "black" },
-                  }}
-                  onClick={() => {
-                    navigate("/contact");
-                    scrollToTop();
-                  }}
-                >
-                  Book Appointment
-                </Button>
+                <Link to="/contact">
+                  <Button
+                    color="inherit"
+                    variant="outlined"
+                    sx={{
+                      color: "white",
+                      backgroundColor: "#d9a95b",
+                      borderRadius: "26px",
+                      mx: { md: 8, xs: 0 },
+                      height: { md: "35px", xs: "50px" },
+                      width: { md: "140px" },
+                      "&:hover": { backgroundColor: "black" },
+                    }}
+                    onClick={handleBookAppointmentClick}
+                  >
+                    Book Appointment
+                  </Button>
                 </Link>
               </Box>
             </Toolbar>
@@ -310,7 +330,7 @@ const AppBarWithTabs = () => {
           <Drawer
             anchor="right"
             open={isDrawerOpen}
-            onClose={toggleDrawer}
+            onClose={handleDrawerClose}
             variant="temporary"
           >
             <Box
@@ -342,6 +362,7 @@ const AppBarWithTabs = () => {
                       navigate(button.path);
                       handleTabChange(button.path);
                       scrollToTop();
+                      handleDrawerClose();
                     }}
                     sx={{ my: 1, color: "#8f6e45" }}
                   >
@@ -360,6 +381,7 @@ const AppBarWithTabs = () => {
                           navigate(tab.path);
                           handleTabChange(tab.path);
                           scrollToTop();
+                          handleDrawerClose();
                         }}
                         sx={{ my: 1, color: "#8f6e45" }}
                       >
@@ -386,7 +408,12 @@ const AppBarWithTabs = () => {
             >
               <Tabs
                 value={activeTab}
-                onChange={(event, newValue) => handleTabChange(newValue)}
+                onChange={handleTabChange}
+                TabIndicatorProps={{
+                  style: {
+                    backgroundColor: "#d9a95b",
+                  },
+                }}
                 sx={{
                   "& .MuiTabs-flexContainer": { color: "#9ba6bd" },
                   "& .MuiTab-root": { fontWeight: 900 },
@@ -398,12 +425,17 @@ const AppBarWithTabs = () => {
                     key={button.id}
                     label={button.title}
                     value={button.path}
-                    component="a"
                     onClick={() => {
                       navigate(button.path);
                       scrollToTop();
+                      handleTabChange(button.id - 1);
                     }}
-                    style={{ fontSize: "14px", marginLeft: "15px" }}
+                    style={{
+                      fontSize: "14px",
+                      marginLeft: "15px",
+                      color:
+                        activeTab === button.id - 1 ? "#d9a95b" : undefined,
+                    }}
                   />
                 ))}
                 {isAdmin() &&
@@ -456,13 +488,14 @@ const AppBarWithTabs = () => {
                   sx={{
                     color: "white",
                     backgroundColor: "#d9a95b",
-                    borderRadius: "26px",
+                    borderRadius: "28px",
                     mx: { md: 3, xs: 1 },
-                    height: "3em",
+                    height: { md: "50px", xs: "50px" },
+                    width: { md: "200px" },
                     "&:hover": { backgroundColor: "black" },
                   }}
                   onClick={() => {
-                    navigate("/contact");
+                    handleBookAppointmentClick();
                     scrollToTop();
                   }}
                 >
@@ -507,6 +540,11 @@ const AppBarWithTabs = () => {
               <Tabs
                 value={activeTab}
                 onChange={(event, newValue) => handleTabChange(newValue)}
+                TabIndicatorProps={{
+                  style: {
+                    backgroundColor: "#d9a95b",
+                  },
+                }}
                 sx={{
                   "& .MuiTabs-flexContainer": { color: "#8f6e45" },
                   "& .MuiTab-root": { fontWeight: 900 },
@@ -520,8 +558,13 @@ const AppBarWithTabs = () => {
                     onClick={() => {
                       navigate(button.path);
                       scrollToTop();
+                      handleTabChange(button.id - 1);
                     }}
-                    style={{ fontSize: "14px", color: "#8f6e45" }}
+                    style={{
+                      fontSize: "14px",
+                      marginLeft: "15px",
+                      color: activeTab === button.id - 1 ? "#d9a95b" : "white",
+                    }}
                   />
                 ))}
                 {isAdmin() &&

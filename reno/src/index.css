@@ -29,7 +29,3 @@ code {
 ::-webkit-scrollbar-thumb:hover {
   background: #d9a95b;
 }
-
-::-webkit-scrollbar-button {
-  background: #d9a95b;
-}
